@@ -1,0 +1,22 @@
+{
+  "name": "async-done",
+  "version": "0.0.0",
+  "description": "Manage callback, promise, and stream completion",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "node test/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/phated/async-done"
+  },
+  "author": "Blaine Bublitz <blaine@iceddev.com> (http://iceddev.com/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/phated/async-done/issues"
+  },
+  "homepage": "https://github.com/phated/async-done"
+}
