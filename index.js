@@ -1,6 +1,7 @@
 'use strict';
 
 var domain = require('domain');
+var EE = require('events').EventEmitter;
 
 function asyncDone(fn, done){
   function successCallback(){
@@ -18,19 +19,19 @@ function asyncDone(fn, done){
   function asyncRunner(){
     var result = domainBoundFn(errorCallback);
 
-    if(result && typeof result.pipe === 'function'){
+    if(result && result instanceof EE){
       d.add(result);
-      return result
-        .once('end', successCallback)
-        .once('close', successCallback);
+      result.once('end', successCallback).once('close', successCallback);
+      return;
     }
 
     if(result && typeof result.then === 'function'){
-      return result.then(successCallback, errorCallback);
+      result.then(successCallback, errorCallback);
+      return;
     }
 
     if(fn.length === 0){
-      done(new Error('Sync function was called'));
+      done();
     }
   }
 

@@ -7,7 +7,7 @@
     "test": "test"
   },
   "scripts": {
-    "test": "node test/index.js"
+    "test": "tap ./test"
   },
   "repository": {
     "type": "git",
@@ -18,5 +18,10 @@
   "bugs": {
     "url": "https://github.com/phated/async-done/issues"
   },
-  "homepage": "https://github.com/phated/async-done"
+  "homepage": "https://github.com/phated/async-done",
+  "devDependencies": {
+    "tap": "~0.4.8",
+    "through2": "~0.4.1",
+    "when": "~2.8.0"
+  }
 }
