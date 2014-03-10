@@ -5,7 +5,7 @@ var test = require('tap').test;
 var asyncDone = require('../');
 
 function success(cb){
-  cb();
+  cb(null, 2);
 }
 
 function failure(cb){
@@ -17,8 +17,9 @@ function neverDone(someArg){
 }
 
 test('handle a successful callback', function(t){
-  asyncDone(success, function(err){
-    t.type(err, 'undefined', 'error should be undefined');
+  asyncDone(success, function(err, result){
+    t.ok(err == null, 'error should be null or undefined');
+    t.equal(result, 2, 'result should be 2');
     t.end();
   });
 });
