@@ -51,7 +51,7 @@ If a `Stream` (or any instance of `EventEmitter`) or `Promise` is returned from 
 
 `Promises` will be listened for on the `then` method. They will use the `onFulfilled` to resolve successfully or the `onRejected` methods to resolve with an error.
 
-If you want to write a sync function, it will be executed on `process.nextTick` and the results will be passed into `onComplete`.
+If you want to write a sync function, it will be executed on `process.nextTick` and the return value will be passed into `onComplete`. If you plan to use a sync function, don't specify any parameters in your function declaration, as we need to rely on function arity to determine the function isn't async.
 
 #### `onComplete(error, result)` : Function
 
