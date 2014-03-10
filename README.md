@@ -14,9 +14,10 @@ var asyncDone = require('async-done');
 
 asyncDone(function(done){
   // do async things
-  done();
-}, function(err){
-  // err will be undefined if done callback wasn't passed an error
+  done(null, 2);
+}, function(error, result){
+  // `error` will be undefined on successful execution of the first function.
+  // `result` will be the result from the first function.
 });
 ```
 
@@ -28,8 +29,9 @@ var asyncDone = require('async-done');
 asyncDone(function(done){
   // do async things
   done(new Error('Some Error Occurred'));
-}, function(err){
-  // err will be the error passed to done callback
+}, function(error, result){
+  // `error` will be an error from the first function.
+  // `result` will be undefined on failed execution of the first function.
 });
 ```
 
@@ -49,14 +51,21 @@ If a `Stream` (or any instance of `EventEmitter`) or `Promise` is returned from 
 
 `Promises` will be listened for on the `then` method. They will use the `onFulfilled` to resolve successfully or the `onRejected` methods to resolve with an error.
 
-#### `onComplete(err)` : Function
+If you want to write a sync function, it will be executed on `process.nextTick` and the results will be passed into `onComplete`.
 
-The `onComplete` method will receive an error as its only argument if an error occurred in the execution of the `executor` function.  This includes:
+#### `onComplete(error, result)` : Function
+
+If an error doesn't occur in the execution of the `executor` function, the `onComplete` method will receive the results as its second argument.
+
+If an error occurred in the execution of the `executor` function, The `onComplete` method will receive an error as its first argument.
+
+Errors can be caused by:
 
 * A thrown error
 * An error passed to a `done` callback
 * An `error` event emitted on a returned `Stream` or `EventEmitter`
 * A rejection of a returned `Promise`
+
 
 ## License
 
