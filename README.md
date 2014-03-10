@@ -1,6 +1,8 @@
 async-done
 ==========
 
+[![build status](https://secure.travis-ci.org/phated/async-done.png)](http://travis-ci.org/phated/async-done)
+
 Manage callback, promise, and stream completion
 
 Will run call the executor function on `nextTick`. This will cause all functions to be async.
