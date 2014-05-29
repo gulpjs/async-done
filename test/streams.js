@@ -30,9 +30,8 @@ function failure(){
 }
 
 test('handle a successful stream', function(t){
-  asyncDone(success, function(err, result){
+  asyncDone(success, function(err){
     t.ok(err == null, 'error should be null or undefined');
-    t.equal(result, 2, 'result should be 2');
     t.end();
   });
 });

@@ -19,6 +19,9 @@
     "url": "https://github.com/phated/async-done/issues"
   },
   "homepage": "https://github.com/phated/async-done",
+  "dependencies": {
+    "end-of-stream": "^0.1.4"
+  },
   "devDependencies": {
     "tap": "~0.4.8",
     "through2": "~0.4.1",
