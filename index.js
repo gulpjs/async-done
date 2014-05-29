@@ -3,6 +3,8 @@
 var domain = require('domain');
 var EE = require('events').EventEmitter;
 
+var eos = require('end-of-stream');
+
 function asyncDone(fn, done){
   function onSuccess(result){
     return done(undefined, result);
@@ -21,7 +23,7 @@ function asyncDone(fn, done){
 
     if(result && result instanceof EE){
       d.add(result);
-      result.once('end', onSuccess).once('close', onSuccess);
+      eos(result, { error: false }, onSuccess);
       return;
     }
 
