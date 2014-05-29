@@ -3,6 +3,7 @@
 var domain = require('domain');
 
 var eos = require('end-of-stream');
+var tick = require('next-tick');
 
 function asyncDone(fn, done){
   function onSuccess(result){
@@ -32,7 +33,7 @@ function asyncDone(fn, done){
     }
   }
 
-  process.nextTick(asyncRunner);
+  tick(asyncRunner);
 }
 
 module.exports = asyncDone;
