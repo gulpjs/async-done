@@ -30,10 +30,6 @@ function asyncDone(fn, done){
       result.then(onSuccess, onError);
       return;
     }
-
-    if(fn.length === 0){
-      done(null, result);
-    }
   }
 
   process.nextTick(asyncRunner);
