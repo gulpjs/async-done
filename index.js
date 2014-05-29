@@ -15,7 +15,7 @@ function asyncDone(fn, done){
   }
 
   var d = domain.create();
-  d.on('error', onError);
+  d.once('error', onError);
   var domainBoundFn = d.bind(fn);
 
   function asyncRunner(){
