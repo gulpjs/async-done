@@ -7,7 +7,7 @@ var tick = require('next-tick');
 
 function asyncDone(fn, done){
   function onSuccess(result){
-    return done(undefined, result);
+    return done(null, result);
   }
 
   function onError(error){
