@@ -1,7 +1,6 @@
 'use strict';
 
 var domain = require('domain');
-var EE = require('events').EventEmitter;
 
 var eos = require('end-of-stream');
 
@@ -21,7 +20,7 @@ function asyncDone(fn, done){
   function asyncRunner(){
     var result = domainBoundFn(done);
 
-    if(result && result instanceof EE){
+    if(result && typeof result.on === 'function'){
       d.add(result);
       eos(result, { error: false }, onSuccess);
       return;
@@ -33,7 +32,7 @@ function asyncDone(fn, done){
     }
 
     if(fn.length === 0){
-      done(undefined, result);
+      done(null, result);
     }
   }
 
