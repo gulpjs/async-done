@@ -5,7 +5,7 @@ async-done
 
 Manage callback, promise, and stream completion
 
-Will run call the executor function on `nextTick`. This will cause all functions to be async.
+Will run call the function on `nextTick`. This will cause all functions to be async.
 
 ## Usage
 
@@ -39,27 +39,27 @@ asyncDone(function(done){
 
 ## API
 
-### `asyncDone(executor, onComplete)` : Function
+### `asyncDone(fn, callback)`
 
-Takes a function to execute (`executor`) and a function to call on completion (`onComplete`).
+Takes a function to execute (`fn`) and a function to call on completion (`callback`).
 
-#### `executor([done])` : Function
+#### `fn([done])`
 
 Optionally takes a callback to call when async tasks are complete.
 
-If a `Stream` (or any instance of `EventEmitter`) or `Promise` is returned from the `executor` function, they will be used to wire up the async resolution.
+If a `Stream` (or any instance of `EventEmitter`) or `Promise` is returned from the `fn` function, they will be used to wire up the async resolution.
 
 `Streams` (or any instance of `EventEmitter`) will be wrapped in a domain for error management. The `end` and `close` events will be used to resolve successfully.
 
 `Promises` will be listened for on the `then` method. They will use the `onFulfilled` to resolve successfully or the `onRejected` methods to resolve with an error.
 
-If you want to write a sync function, it will be executed on `process.nextTick` and the return value will be passed into `onComplete`. If you plan to use a sync function, don't specify any parameters in your function declaration, as we need to rely on function arity to determine the function isn't async.
+__Warning:__ Sync taks are not supported and your function will never complete if the one of the above strategies is not used to signal completion.
 
-#### `onComplete(error, result)` : Function
+#### `callback(error, result)`
 
-If an error doesn't occur in the execution of the `executor` function, the `onComplete` method will receive the results as its second argument.
+If an error doesn't occur in the execution of the `fn` function, the `callback` method will receive the results as its second argument.
 
-If an error occurred in the execution of the `executor` function, The `onComplete` method will receive an error as its first argument.
+If an error occurred in the execution of the `fn` function, The `callback` method will receive an error as its first argument.
 
 Errors can be caused by:
 
