@@ -4,8 +4,11 @@ var domain = require('domain');
 
 var eos = require('end-of-stream');
 var tick = require('next-tick');
+var once = require('once');
 
-function asyncDone(fn, done){
+function asyncDone(fn, cb){
+  var done = once(cb);
+
   function onSuccess(result){
     return done(null, result);
   }
