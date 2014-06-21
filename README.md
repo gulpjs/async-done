@@ -39,11 +39,11 @@ asyncDone(function(done){
 
 ## API
 
-### `asyncDone(fn, callback)` : Function
+### `asyncDone(fn, callback)`
 
 Takes a function to execute (`fn`) and a function to call on completion (`callback`).
 
-#### `fn([done])` : Function
+#### `fn([done])`
 
 Optionally takes a callback to call when async tasks are complete.
 
@@ -55,7 +55,7 @@ If a `Stream` (or any instance of `EventEmitter`) or `Promise` is returned from 
 
 __Warning:__ Sync taks are not supported and your function will never complete if the one of the above strategies is not used to signal completion.
 
-#### `callback(error, result)` : Function
+#### `callback(error, result)`
 
 If an error doesn't occur in the execution of the `fn` function, the `callback` method will receive the results as its second argument.
 
