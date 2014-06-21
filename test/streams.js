@@ -43,3 +43,13 @@ test('handle an errored stream', function(t){
     t.end();
   });
 });
+
+test('handle a returned stream and cb by only calling callback once', function(t){
+  t.plan(1);
+
+  asyncDone(function(cb){
+    return success().on('end', function(){ cb(); });
+  }, function(err){
+    t.ok(err == null, 'error should be null or undefined');
+  });
+});
