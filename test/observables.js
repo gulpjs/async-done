@@ -26,6 +26,11 @@ test('handle a finished observable', function(t){
   });
 });
 
+/*
+
+Currently, we don't support values returned from observables.
+This keeps the code simpler.
+
 test('handle a finished observable with value', function(t){
   asyncDone(successValue, function(err, result){
     t.ok(err == null, 'error should be null or undefined');
@@ -33,6 +38,7 @@ test('handle a finished observable with value', function(t){
     t.end();
   });
 });
+ */
 
 test('handle an errored observable', function(t){
   asyncDone(failure, function(err){
