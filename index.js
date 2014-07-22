@@ -35,7 +35,19 @@ function asyncDone(fn, cb){
 
     if(result && typeof result.subscribe === 'function'){
       // assume RxJS observable
-      result.subscribe(noop, onError, function () { onSuccess(); });
+      var val, hasVal;
+      result.subscribe(
+        function (v) {
+          hasVal = true;
+          val = v;
+        }, onError, 
+        function () {
+          if (hasVal) {
+            onSuccess(val);
+          } else { 
+            onSuccess(); 
+          }
+        });
       return;
     }    
 

@@ -7,6 +7,10 @@ var asyncDone = require('../');
 var Observable = require('rx').Observable;
 
 function success() {
+  return Observable.empty();
+}
+
+function successValue() {
   return Observable.return(42);
 }
 
@@ -18,6 +22,14 @@ test('handle a finished observable', function(t){
   asyncDone(success, function(err, result){
     t.ok(err == null, 'error should be null or undefined');
     t.equal(result, undefined, 'result should be undefined');
+    t.end();
+  });
+});
+
+test('handle a finished observable with value', function(t){
+  asyncDone(successValue, function(err, result){
+    t.ok(err == null, 'error should be null or undefined');
+    t.equal(result, 42, 'result should be 42');
     t.end();
   });
 });
