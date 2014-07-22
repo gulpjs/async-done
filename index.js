@@ -33,17 +33,18 @@ function asyncDone(fn, cb){
       return;
     }
 
+    if(result && typeof result.subscribe === 'function'){
+      // assume RxJS observable
+      result.subscribe(noop, onError, function () { onSuccess(); });
+      return;
+    }    
+
     if(result && typeof result.then === 'function'){
       // assume promise
       result.then(onSuccess, onError);
       return;
     }
 
-    if(result && typeof result.subscribe === 'function'){
-      // assume RxJS observable
-      result.subscribe(noop, onError, onSuccess);
-      return;
-    }
   }
 
   tick(asyncRunner);
