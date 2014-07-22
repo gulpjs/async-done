@@ -27,6 +27,7 @@
   "devDependencies": {
     "tap": "~0.4.8",
     "through2": "~0.4.1",
+    "rx": "~2.2.28",
     "when": "~2.8.0"
   }
 }
