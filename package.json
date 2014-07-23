@@ -1,7 +1,7 @@
 {
   "name": "async-done",
   "version": "0.2.0",
-  "description": "Manage callback, promise, and stream completion",
+  "description": "Handles completion and errors for callbacks, promises, observables and streams.",
   "main": "index.js",
   "directories": {
     "test": "test"
