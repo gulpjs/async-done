@@ -44,7 +44,6 @@ function asyncDone(fn, cb){
       result.then(onSuccess, onError);
       return;
     }
-
   }
 
   tick(asyncRunner);
