@@ -5,6 +5,7 @@ var domain = require('domain');
 var eos = require('end-of-stream');
 var tick = require('next-tick');
 var once = require('once');
+var exhaust = require('stream-exhaust');
 
 function noop(){}
 
@@ -35,7 +36,7 @@ function asyncDone(fn, cb){
     if(result && typeof result.on === 'function'){
       // assume node stream
       d.add(result);
-      eos(result, { error: false }, onSuccess);
+      eos(exhaust(result), { error: false }, onSuccess);
       return;
     }
 
