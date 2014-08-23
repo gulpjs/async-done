@@ -42,3 +42,21 @@ test('a function that takes an argument but never calls callback', function(t){
     t.end();
   }, 1000);
 });
+
+test('should not handle error if something throws inside the callback', function(t){
+  // because tap timeout is a pain
+  setTimeout(t.timeout.bind(t), 2000);
+
+  t.plan(1);
+
+  var d = require('domain').create();
+  d.on('error', function(err){
+    t.ok(err instanceof Error, 'error is not lost');
+  });
+
+  d.run(function(){
+    asyncDone(success, function(){
+      throw new Error('Thrown Error');
+    });
+  });
+});
