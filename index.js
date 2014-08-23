@@ -9,7 +9,17 @@ var once = require('once');
 function noop(){}
 
 function asyncDone(fn, cb){
-  var done = once(cb);
+  cb = once(cb);
+
+  var d = domain.create();
+  d.once('error', onError);
+  var domainBoundFn = d.bind(fn);
+
+  function done(error, result){
+    d.removeListener('error', onError);
+    d.exit();
+    return cb(error, result);
+  }
 
   function onSuccess(result){
     return done(null, result);
@@ -18,10 +28,6 @@ function asyncDone(fn, cb){
   function onError(error){
     return done(error);
   }
-
-  var d = domain.create();
-  d.once('error', onError);
-  var domainBoundFn = d.bind(fn);
 
   function asyncRunner(){
     var result = domainBoundFn(done);
