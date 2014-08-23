@@ -9,6 +9,10 @@ var exhaust = require('stream-exhaust');
 
 function noop(){}
 
+var eosConfig = {
+  error: false
+};
+
 function asyncDone(fn, cb){
   cb = once(cb);
 
@@ -36,7 +40,7 @@ function asyncDone(fn, cb){
     if(result && typeof result.on === 'function'){
       // assume node stream
       d.add(result);
-      eos(exhaust(result), { error: false }, onSuccess);
+      eos(exhaust(result), eosConfig, onSuccess);
       return;
     }
 
