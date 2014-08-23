@@ -1,29 +1,36 @@
 'use strict';
 
-var test = require('tap').test;
+var lab = require('lab');
+var describe = lab.experiment;
+var it = lab.test;
+var expect = lab.expect;
+
 var when = require('when');
 
 var asyncDone = require('../');
 
-function success(){
+function success() {
   return when.resolve(2);
 }
 
-function failure(){
+function failure() {
   return when.reject(new Error('Promise Error'));
 }
 
-test('handle a resolved promise', function(t){
-  asyncDone(success, function(err, result){
-    t.ok(err == null, 'error should be null or undefined');
-    t.equal(result, 2, 'result should be 2');
-    t.end();
-  });
-});
+describe('promises', function () {
 
-test('handle a rejected promise', function(t){
-  asyncDone(failure, function(err){
-    t.ok(err instanceof Error, 'error should be instance of Error');
-    t.end();
+  it('should handle a resolved promise', function (done) {
+    asyncDone(success, function (err, result) {
+      expect(result).to.equal(2);
+      done(err);
+    });
   });
+
+  it('should handle a rejected promise', function (done) {
+    asyncDone(failure, function (err, result) {
+      expect(err).to.be.instanceof(Error);
+      done();
+    });
+  });
+
 });

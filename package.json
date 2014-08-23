@@ -7,7 +7,7 @@
     "test": "test"
   },
   "scripts": {
-    "test": "tap ./test"
+    "test": "lab -v"
   },
   "repository": {
     "type": "git",
@@ -26,9 +26,9 @@
     "stream-exhaust": "^1.0.0"
   },
   "devDependencies": {
-    "tap": "~0.4.8",
     "through2": "~0.4.1",
     "when": "~2.8.0",
-    "rx": "~2.x.x"
+    "rx": "~2.x.x",
+    "lab": "^3.1.1"
   }
 }
