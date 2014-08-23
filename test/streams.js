@@ -29,6 +29,10 @@ function failure(){
   return read.pipe(new EndStream());
 }
 
+function unpiped(){
+  return fs.createReadStream(exists);
+}
+
 test('handle a successful stream', function(t){
   asyncDone(success, function(err){
     t.ok(err == null, 'error should be null or undefined');
@@ -45,11 +49,17 @@ test('handle an errored stream', function(t){
 });
 
 test('handle a returned stream and cb by only calling callback once', function(t){
-  t.plan(1);
-
   asyncDone(function(cb){
     return success().on('end', function(){ cb(); });
   }, function(err){
     t.ok(err == null, 'error should be null or undefined');
+    t.end();
+  });
+});
+
+test('consumes an unpiped readable stream', function(t){
+  asyncDone(unpiped, function(err){
+    t.ok(err == null, 'error should be null or undefined');
+    t.end();
   });
 });
