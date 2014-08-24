@@ -1,36 +1,39 @@
 'use strict';
 
-var lab = require('lab');
-var describe = lab.experiment;
-var it = lab.test;
-var expect = lab.expect;
+var lab = exports.lab = require('lab').script();
+var describe = lab.describe;
+var it = lab.it;
+var before = lab.before;
+var beforeEach = lab.beforeEach;
+var after = lab.after;
+var afterEach = lab.afterEach;
+var expect = require('lab').expect;
 
 var when = require('when');
 
 var asyncDone = require('../');
 
-function success() {
+function success(){
   return when.resolve(2);
 }
 
-function failure() {
+function failure(){
   return when.reject(new Error('Promise Error'));
 }
 
-describe('promises', function () {
+describe('promises', function(){
 
-  it('should handle a resolved promise', function (done) {
-    asyncDone(success, function (err, result) {
+  it('should handle a resolved promise', function(done){
+    asyncDone(success, function(err, result){
       expect(result).to.equal(2);
       done(err);
     });
   });
 
-  it('should handle a rejected promise', function (done) {
-    asyncDone(failure, function (err, result) {
+  it('should handle a rejected promise', function(done){
+    asyncDone(failure, function(err, result){
       expect(err).to.be.instanceof(Error);
       done();
     });
   });
-
 });
