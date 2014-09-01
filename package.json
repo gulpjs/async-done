@@ -16,7 +16,7 @@
   "main": "index.js",
   "scripts": {
     "test": "lab -cv",
-    "lint": "jshint lib test index.js --reporter node_modules/jshint-stylish/stylish.js --exclude node_modules"
+    "lint": "jshint test index.js --reporter node_modules/jshint-stylish/stylish.js --exclude node_modules"
   },
   "dependencies": {
     "end-of-stream": "^1.0.0",
