@@ -18,7 +18,7 @@ asyncDone(function(done){
   // do async things
   done(null, 2);
 }, function(error, result){
-  // `error` will be undefined on successful execution of the first function.
+  // `error` will be null on successful execution of the first function.
   // `result` will be the result from the first function.
 });
 ```
