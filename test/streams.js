@@ -45,6 +45,10 @@ function exec(){
   return cp.exec('echo hello world');
 }
 
+function spawn(){
+  return cp.spawn('echo', ['hello world']);
+}
+
 describe('streams', function(){
 
   it('should handle a successful stream', function(done){
@@ -78,8 +82,15 @@ describe('streams', function(){
     });
   });
 
-  it.skip('should handle exec', function(done){
+  it('should handle exec', function(done){
     asyncDone(exec, function(err){
+      expect(err).to.equal(null);
+      done();
+    });
+  });
+
+  it('should handle spawn', function(done){
+    asyncDone(spawn, function(err){
       expect(err).to.equal(null);
       done();
     });
