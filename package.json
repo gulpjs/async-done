@@ -14,6 +14,10 @@
     "node": ">= 0.10"
   },
   "main": "index.js",
+  "files": [
+    "index.js",
+    "LICENSE"
+  ],
   "scripts": {
     "test": "lab -cv",
     "lint": "jshint test index.js --reporter node_modules/jshint-stylish/stylish.js --exclude node_modules"
