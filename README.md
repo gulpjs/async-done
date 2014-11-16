@@ -3,7 +3,7 @@ async-done
 
 [![build status](https://secure.travis-ci.org/phated/async-done.png)](http://travis-ci.org/phated/async-done)
 
-Handles completion and errors for callbacks, promises, observables and streams.
+Handles completion and errors for callbacks, promises, observables, child processes and streams.
 
 Will run call the function on `nextTick`. This will cause all functions to be async.
 
@@ -55,6 +55,9 @@ Optionally takes a callback to call when async tasks are complete.
 * `Stream` or `EventEmitter` returned
   - Completion: [end-of-stream](https://www.npmjs.org/package/end-of-stream) module
   - Error: [domains](http://nodejs.org/api/domain.html)
+* `Child Process` returned
+  - Completion [end-of-stream](https://www.npmjs.org/package/end-of-stream) module
+  - Error: [domains](http://nodejs.org/api/domain.html)
 * `Promise` returned
   - Completion: [onFulfilled](http://promisesaplus.com/#point-26) method called
   - Error: [onRejected](http://promisesaplus.com/#point-30) method called
@@ -74,7 +77,7 @@ Errors can be caused by:
 
 * A thrown error
 * An error passed to a `done` callback
-* An `error` event emitted on a returned `Stream` or `EventEmitter`
+* An `error` event emitted on a returned `Stream`, `EventEmitter` or `Child Process`
 * A rejection of a returned `Promise`
 * The `onError` handler being called on an `Observable`
 
