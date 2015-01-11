@@ -65,7 +65,7 @@ Optionally takes a callback to call when async tasks are complete.
   - Completion: [onCompleted](https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observable.md#rxobservableprototypesubscribeobserver--onnext-onerror-oncompleted) method called
   - Error: [onError](https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observable.md#rxobservableprototypesubscribeobserver--onnext-onerror-oncompleted) method called
 
-__Warning:__ Sync taks are __not supported__ and your function will never complete if the one of the above strategies is not used to signal completion. However, thrown errors will be caught by the domain.
+__Warning:__ Sync tasks are __not supported__ and your function will never complete if the one of the above strategies is not used to signal completion. However, thrown errors will be caught by the domain.
 
 #### `callback(error, result)`
 
