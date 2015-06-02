@@ -19,7 +19,7 @@
     "LICENSE"
   ],
   "scripts": {
-    "test": "lab -cv",
+    "test": "node --harmony node_modules/.bin/lab test/*.js -cv",
     "lint": "jshint test index.js --reporter node_modules/jshint-stylish/stylish.js --exclude node_modules"
   },
   "dependencies": {
