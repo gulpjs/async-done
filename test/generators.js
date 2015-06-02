@@ -1,6 +1,8 @@
 
 'use strict';
 
+/* jshint esnext:true */
+
 var lab = exports.lab = require('lab').script();
 var describe = lab.describe;
 var it = lab.it;
@@ -12,9 +14,9 @@ describe('generators', function(){
     var cnt = 10;
 
     asyncDone(function * success() {
-      yield [cnt++]
-      yield [cnt++]
-      return cnt
+      yield [cnt++];
+      yield [cnt++];
+      return cnt;
     }, function(err, res){
       expect(err).to.equal(null);
       expect(res).to.equal(12);
@@ -29,12 +31,10 @@ describe('generators', function(){
     asyncDone(function * failure() {
       yield [cnt++];
       throw new Error('boom');
-      yield [cnt++];
-      return cnt;
     }, function(err, res){
       expect(err).to.be.instanceof(Error);
       expect(res).to.be.undefined();
-      expect(cnt).to.equal(11)
+      expect(cnt).to.equal(11);
       done();
     });
   });

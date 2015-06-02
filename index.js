@@ -3,7 +3,7 @@
 var domain = require('domain');
 
 var co = require('co');
-var isGeneratorFn = require('is-es6-generator-function')
+var isGeneratorFn = require('is-es6-generator-function');
 var eos = require('end-of-stream');
 var tick = require('next-tick');
 var once = require('once');
@@ -22,7 +22,7 @@ function asyncDone(fn, cb){
   d.once('error', onError);
 
   if (isGeneratorFn(fn)) {
-    fn = co.wrap(fn)
+    fn = co.wrap(fn);
   }
 
   var domainBoundFn = d.bind(fn);
