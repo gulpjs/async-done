@@ -20,10 +20,10 @@ function asyncDone(fn, cb){
   d.once('error', onError);
   var domainBoundFn = d.bind(fn);
 
-  function done(error, result){
+  function done(){
     d.removeListener('error', onError);
     d.exit();
-    return cb(error, result);
+    return cb.apply(null, arguments);
   }
 
   function onSuccess(result){
