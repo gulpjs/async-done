@@ -29,7 +29,6 @@
   },
   "devDependencies": {
     "code": "^1.4.1",
-    "jshint-stylish": "^0.4.0",
     "lab": "^5.13.0",
     "rx": "^2.5.3",
     "through2": "^2.0.0",
