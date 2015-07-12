@@ -3,11 +3,7 @@
 var lab = exports.lab = require('lab').script();
 var describe = lab.describe;
 var it = lab.it;
-var before = lab.before;
-var beforeEach = lab.beforeEach;
-var after = lab.after;
-var afterEach = lab.afterEach;
-var expect = require('lab').expect;
+var expect = require('code').expect;
 
 var when = require('when');
 
@@ -31,7 +27,7 @@ describe('promises', function(){
   });
 
   it('should handle a rejected promise', function(done){
-    asyncDone(failure, function(err, result){
+    asyncDone(failure, function(err){
       expect(err).to.be.instanceof(Error);
       done();
     });

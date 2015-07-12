@@ -3,11 +3,7 @@
 var lab = exports.lab = require('lab').script();
 var describe = lab.describe;
 var it = lab.it;
-var before = lab.before;
-var beforeEach = lab.beforeEach;
-var after = lab.after;
-var afterEach = lab.afterEach;
-var expect = require('lab').expect;
+var expect = require('code').expect;
 
 var fs = require('fs');
 var cp = require('child_process');
