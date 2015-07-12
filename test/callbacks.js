@@ -3,11 +3,7 @@
 var lab = exports.lab = require('lab').script();
 var describe = lab.describe;
 var it = lab.it;
-var before = lab.before;
-var beforeEach = lab.beforeEach;
-var after = lab.after;
-var afterEach = lab.afterEach;
-var expect = require('lab').expect;
+var expect = require('code').expect;
 
 var asyncDone = require('../');
 
@@ -19,7 +15,7 @@ function failure(cb){
   cb(new Error('Callback Error'));
 }
 
-function neverDone(someArg){
+function neverDone(){
   return 2;
 }
 
@@ -33,14 +29,14 @@ describe('callbacks', function(){
   });
 
   it('should handle an errored callback', function(done){
-    asyncDone(failure, function(err, result){
+    asyncDone(failure, function(err){
       expect(err).to.be.instanceof(Error);
       done();
     });
   });
 
   it('a function that takes an argument but never calls callback', function(done){
-    asyncDone(neverDone, function(err){
+    asyncDone(neverDone, function(){
       done(new Error('Callback called'));
     });
 
