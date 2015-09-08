@@ -40,7 +40,7 @@ function asyncDone(fn, cb){
     if(result && typeof result.on === 'function'){
       // assume node stream
       d.add(result);
-      eos(exhaust(result), eosConfig, onSuccess);
+      eos(exhaust(result), eosConfig, done);
       return;
     }
 
