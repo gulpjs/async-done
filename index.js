@@ -23,7 +23,7 @@ function asyncDone(fn, cb){
   function done(){
     d.removeListener('error', onError);
     d.exit();
-    return cb.apply(cb, arguments);
+    return cb.apply(null, arguments);
   }
 
   function onSuccess(result){
