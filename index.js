@@ -23,7 +23,7 @@ function asyncDone(fn, cb){
   function done(){
     d.removeListener('error', onError);
     d.exit();
-    return cb.apply(null, arguments);
+    return cb.apply(cb, arguments);
   }
 
   function onSuccess(result){
@@ -40,7 +40,7 @@ function asyncDone(fn, cb){
     if(result && typeof result.on === 'function'){
       // assume node stream
       d.add(result);
-      eos(exhaust(result), eosConfig, onSuccess);
+      eos(exhaust(result), eosConfig, done);
       return;
     }
 

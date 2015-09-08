@@ -37,19 +37,10 @@ function unpiped(){
   return fs.createReadStream(exists);
 }
 
-function exec(){
-  return cp.exec('echo hello world');
-}
-
-function spawn(){
-  return cp.spawn('echo', ['hello world']);
-}
-
 describe('streams', function(){
-
   it('should handle a successful stream', function(done){
     asyncDone(success, function(err){
-      expect(err).to.equal(null);
+      expect(err).to.not.be.instanceof(Error);
       done();
     });
   });
@@ -65,7 +56,7 @@ describe('streams', function(){
     asyncDone(function(cb){
       return success().on('end', function(){ cb(null, 3); });
     }, function(err, result){
-      expect(err).to.equal(null);
+      expect(err).to.not.be.instanceof(Error);
       expect(result).to.equal(3); // to know we called the callback
       done();
     });
@@ -73,21 +64,7 @@ describe('streams', function(){
 
   it('consumes an unpiped readable stream', function(done){
     asyncDone(unpiped, function(err){
-      expect(err).to.equal(null);
-      done();
-    });
-  });
-
-  it('should handle exec', function(done){
-    asyncDone(exec, function(err){
-      expect(err).to.equal(null);
-      done();
-    });
-  });
-
-  it('should handle spawn', function(done){
-    asyncDone(spawn, function(err){
-      expect(err).to.equal(null);
+      expect(err).to.not.be.instanceof(Error);
       done();
     });
   });
