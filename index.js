@@ -7,8 +7,6 @@ var tick = require('next-tick');
 var once = require('once');
 var exhaust = require('stream-exhaust');
 
-function noop(){}
-
 var eosConfig = {
   error: false
 };
@@ -37,6 +35,14 @@ function asyncDone(fn, cb){
   function asyncRunner(){
     var result = domainBoundFn(done);
 
+    function onNext(state) {
+      onNext.state = state;
+    }
+
+    function onCompleted() {
+      return onSuccess(onNext.state);
+    }
+
     if(result && typeof result.on === 'function'){
       // assume node stream
       d.add(result);
@@ -46,7 +52,7 @@ function asyncDone(fn, cb){
 
     if(result && typeof result.subscribe === 'function'){
       // assume RxJS observable
-      result.subscribe(noop, onError, onSuccess);
+      result.subscribe(onNext, onError, onCompleted);
       return;
     }
 
