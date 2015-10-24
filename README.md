@@ -1,7 +1,7 @@
 async-done
 ==========
 
-[![build status](https://secure.travis-ci.org/phated/async-done.png)](http://travis-ci.org/phated/async-done)
+[![build status](https://secure.travis-ci.org/gulpjs/async-done.png)](http://travis-ci.org/gulpjs/async-done)
 
 Handles completion and errors for callbacks, promises, observables, child processes and streams.
 
