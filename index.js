@@ -8,31 +8,31 @@ var once = require('once');
 var exhaust = require('stream-exhaust');
 
 var eosConfig = {
-  error: false
+  error: false,
 };
 
-function asyncDone(fn, cb){
+function asyncDone(fn, cb) {
   cb = once(cb);
 
   var d = domain.create();
   d.once('error', onError);
   var domainBoundFn = d.bind(fn);
 
-  function done(){
+  function done() {
     d.removeListener('error', onError);
     d.exit();
     return cb.apply(null, arguments);
   }
 
-  function onSuccess(result){
+  function onSuccess(result) {
     return done(null, result);
   }
 
-  function onError(error){
+  function onError(error) {
     return done(error);
   }
 
-  function asyncRunner(){
+  function asyncRunner() {
     var result = domainBoundFn(done);
 
     function onNext(state) {
@@ -43,21 +43,21 @@ function asyncDone(fn, cb){
       return onSuccess(onNext.state);
     }
 
-    if(result && typeof result.on === 'function'){
-      // assume node stream
+    if (result && typeof result.on === 'function') {
+      // Assume node stream
       d.add(result);
       eos(exhaust(result), eosConfig, done);
       return;
     }
 
-    if(result && typeof result.subscribe === 'function'){
-      // assume RxJS observable
+    if (result && typeof result.subscribe === 'function') {
+      // Assume RxJS observable
       result.subscribe(onNext, onError, onCompleted);
       return;
     }
 
-    if(result && typeof result.then === 'function'){
-      // assume promise
+    if (result && typeof result.then === 'function') {
+      // Assume promise
       result.then(onSuccess, onError);
       return;
     }

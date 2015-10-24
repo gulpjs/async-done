@@ -7,53 +7,53 @@ var expect = require('code').expect;
 
 var asyncDone = require('../');
 
-function success(cb){
+function success(cb) {
   cb(null, 2);
 }
 
-function failure(cb){
+function failure(cb) {
   cb(new Error('Callback Error'));
 }
 
-function neverDone(){
+function neverDone() {
   return 2;
 }
 
-describe('callbacks', function(){
+describe('callbacks', function() {
 
-  it('should handle a successful callback', function(done){
-    asyncDone(success, function(err, result){
+  it('should handle a successful callback', function(done) {
+    asyncDone(success, function(err, result) {
       expect(result).to.equal(2);
       done(err);
     });
   });
 
-  it('should handle an errored callback', function(done){
-    asyncDone(failure, function(err){
+  it('should handle an errored callback', function(done) {
+    asyncDone(failure, function(err) {
       expect(err).to.be.instanceof(Error);
       done();
     });
   });
 
-  it('a function that takes an argument but never calls callback', function(done){
-    asyncDone(neverDone, function(){
+  it('a function that takes an argument but never calls callback', function(done) {
+    asyncDone(neverDone, function() {
       done(new Error('Callback called'));
     });
 
-    setTimeout(function(){
+    setTimeout(function() {
       done();
     }, 1000);
   });
 
-  it('should not handle error if something throws inside the callback', function(done){
+  it('should not handle error if something throws inside the callback', function(done) {
     var d = require('domain').create();
-    d.on('error', function(err){
+    d.on('error', function(err) {
       expect(err).to.be.instanceof(Error);
       done();
     });
 
-    d.run(function(){
-      asyncDone(success, function(){
+    d.run(function() {
+      asyncDone(success, function() {
         throw new Error('Thrown Error');
       });
     });
