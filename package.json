@@ -51,5 +51,8 @@
     "done",
     "async",
     "error handling"
+  ],
+  "files": [
+    "index.js"
   ]
 }
