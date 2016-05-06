@@ -1,10 +1,10 @@
 {
   "name": "async-done",
   "version": "1.2.0",
-  "description": "Handles completion and errors for callbacks, promises, observables and streams.",
-  "author": "Blaine Bublitz <blaine@iceddev.com> (http://iceddev.com/)",
+  "description": "Force async using nextTick and normalize completion/errors for callbacks, promises, observables, child processes and streams.",
+  "author": "Gulp Team <team@gulpjs.com> (http://gulpjs.com/)",
   "contributors": [
-    "Blaine Bublitz <blaine@iceddev.com> (http://iceddev.com/)",
+    "Blaine Bublitz <blaine.bublitz@gmail.com>",
     "Pawel Kozlowski <pkozlowski.opensource@gmail.com>",
     "Matthew Podwysocki <matthew.podwysocki@gmail.com>"
   ],

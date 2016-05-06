@@ -1,11 +1,14 @@
-async-done
-==========
+<p align="center">
+  <a href="http://gulpjs.com">
+    <img height="257" width="114" src="https://raw.githubusercontent.com/gulpjs/artwork/master/gulp-2x.png">
+  </a>
+</p>
 
-[![build status](https://secure.travis-ci.org/gulpjs/async-done.png)](http://travis-ci.org/gulpjs/async-done)
+# async-done
 
-Handles completion and errors for callbacks, promises, observables, child processes and streams.
+[![NPM version][npm-image]][npm-url] [![Downloads][downloads-image]][npm-url] [![Build Status][travis-image]][travis-url] [![AppVeyor Build Status][appveyor-image]][appveyor-url] [![Coveralls Status][coveralls-image]][coveralls-url] [![Gitter chat][gitter-image]][gitter-url]
 
-Will run call the function on `nextTick`. This will cause all functions to be async.
+Force async using `nextTick` and normalize completion/errors for callbacks, promises, observables, child processes and streams.
 
 ## Usage
 
@@ -49,21 +52,21 @@ Optionally takes a callback to call when async tasks are complete.
 
 #### Completion and Error Resolution
 
-* `Callback` called
+* `Callback` (`done`) called
   - Completion: called with null error
   - Error: called with non-null error
 * `Stream` or `EventEmitter` returned
-  - Completion: [end-of-stream](https://www.npmjs.org/package/end-of-stream) module
-  - Error: [domains](http://nodejs.org/api/domain.html)
+  - Completion: [end-of-stream][end-of-stream] module
+  - Error: [domains][domains]
 * `Child Process` returned
-  - Completion [end-of-stream](https://www.npmjs.org/package/end-of-stream) module
-  - Error: [domains](http://nodejs.org/api/domain.html)
+  - Completion [end-of-stream][end-of-stream] module
+  - Error: [domains][domains]
 * `Promise` returned
-  - Completion: [onFulfilled](http://promisesaplus.com/#point-26) method called
-  - Error: [onRejected](http://promisesaplus.com/#point-30) method called
+  - Completion: [onFulfilled][promise-onfulfilled] method called
+  - Error: [onRejected][promise-onrejected] method called
 * `Observable` returned
-  - Completion: [onCompleted](https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observable.md#rxobservableprototypesubscribeobserver--onnext-onerror-oncompleted) method called
-  - Error: [onError](https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observable.md#rxobservableprototypesubscribeobserver--onnext-onerror-oncompleted) method called
+  - Completion: [onCompleted][observable-subscribe] method called
+  - Error: [onError][observable-subscribe] method called
 
 __Warning:__ Sync tasks are __not supported__ and your function will never complete if the one of the above strategies is not used to signal completion. However, thrown errors will be caught by the domain.
 
@@ -84,3 +87,25 @@ Errors can be caused by:
 ## License
 
 MIT
+
+[end-of-stream]: https://www.npmjs.org/package/end-of-stream
+[domains]: http://nodejs.org/api/domain.html
+[promise-onfulfilled]: http://promisesaplus.com/#point-26
+[promise-onrejected]: http://promisesaplus.com/#point-30
+[observable-subscribe]: https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/operators/subscribe.md
+
+[downloads-image]: http://img.shields.io/npm/dm/async-done.svg
+[npm-url]: https://npmjs.org/package/async-done
+[npm-image]: http://img.shields.io/npm/v/async-done.svg
+
+[travis-url]: https://travis-ci.org/gulpjs/async-done
+[travis-image]: http://img.shields.io/travis/gulpjs/async-done.svg?label=travis-ci
+
+[appveyor-url]: https://ci.appveyor.com/project/gulpjs/async-done
+[appveyor-image]: https://img.shields.io/appveyor/ci/gulpjs/async-done.svg?label=appveyor
+
+[coveralls-url]: https://coveralls.io/r/gulpjs/async-done
+[coveralls-image]: http://img.shields.io/coveralls/gulpjs/async-done/master.svg
+
+[gitter-url]: https://gitter.im/gulpjs/gulp
+[gitter-image]: https://badges.gitter.im/gulpjs/gulp.svg
