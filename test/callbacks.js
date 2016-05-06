@@ -1,9 +1,6 @@
 'use strict';
 
-var lab = exports.lab = require('lab').script();
-var describe = lab.describe;
-var it = lab.it;
-var expect = require('code').expect;
+var expect = require('expect');
 
 var asyncDone = require('../');
 
@@ -23,14 +20,14 @@ describe('callbacks', function() {
 
   it('should handle a successful callback', function(done) {
     asyncDone(success, function(err, result) {
-      expect(result).to.equal(2);
+      expect(result).toEqual(2);
       done(err);
     });
   });
 
   it('should handle an errored callback', function(done) {
     asyncDone(failure, function(err) {
-      expect(err).to.be.instanceof(Error);
+      expect(err).toBeAn(Error);
       done();
     });
   });
@@ -48,7 +45,7 @@ describe('callbacks', function() {
   it('should not handle error if something throws inside the callback', function(done) {
     var d = require('domain').create();
     d.on('error', function(err) {
-      expect(err).to.be.instanceof(Error);
+      expect(err).toBeAn(Error);
       done();
     });
 

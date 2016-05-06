@@ -1,9 +1,6 @@
 'use strict';
 
-var lab = exports.lab = require('lab').script();
-var describe = lab.describe;
-var it = lab.it;
-var expect = require('code').expect;
+var expect = require('expect');
 
 var when = require('when');
 
@@ -21,14 +18,14 @@ describe('promises', function() {
 
   it('should handle a resolved promise', function(done) {
     asyncDone(success, function(err, result) {
-      expect(result).to.equal(2);
+      expect(result).toEqual(2);
       done(err);
     });
   });
 
   it('should handle a rejected promise', function(done) {
     asyncDone(failure, function(err) {
-      expect(err).to.be.instanceof(Error);
+      expect(err).toBeAn(Error);
       done();
     });
   });

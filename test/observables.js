@@ -1,9 +1,6 @@
 'use strict';
 
-var lab = exports.lab = require('lab').script();
-var describe = lab.describe;
-var it = lab.it;
-var expect = require('code').expect;
+var expect = require('expect');
 
 var asyncDone = require('../');
 
@@ -25,21 +22,21 @@ describe('observables', function() {
 
   it('should handle a finished observable', function(done) {
     asyncDone(success, function(err, result) {
-      expect(result).to.equal(undefined);
+      expect(result).toEqual(undefined);
       done(err);
     });
   });
 
   it('should handle a finished observable with value', function(done) {
     asyncDone(successValue, function(err, result) {
-      expect(result).to.equal(42);
+      expect(result).toEqual(42);
       done(err);
     });
   });
 
   it('should handle an errored observable', function(done) {
     asyncDone(failure, function(err) {
-      expect(err).to.be.instanceof(Error);
+      expect(err).toBeAn(Error);
       done();
     });
   });

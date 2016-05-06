@@ -1,12 +1,8 @@
 'use strict';
 
-var lab = exports.lab = require('lab').script();
-var describe = lab.describe;
-var it = lab.it;
-var expect = require('code').expect;
+var expect = require('expect');
 
 var fs = require('fs');
-var cp = require('child_process');
 var path = require('path');
 var through = require('through2');
 
@@ -40,14 +36,14 @@ function unpiped() {
 describe('streams', function() {
   it('should handle a successful stream', function(done) {
     asyncDone(success, function(err) {
-      expect(err).to.not.be.instanceof(Error);
+      expect(err).toNotBeAn(Error);
       done();
     });
   });
 
   it('should handle an errored stream', function(done) {
     asyncDone(failure, function(err) {
-      expect(err).to.be.instanceof(Error);
+      expect(err).toBeAn(Error);
       done();
     });
   });
@@ -58,15 +54,15 @@ describe('streams', function() {
         cb(null, 3);
       });
     }, function(err, result) {
-      expect(err).to.not.be.instanceof(Error);
-      expect(result).to.equal(3); // To know we called the callback
+      expect(err).toNotBeAn(Error);
+      expect(result).toEqual(3); // To know we called the callback
       done();
     });
   });
 
   it('consumes an unpiped readable stream', function(done) {
     asyncDone(unpiped, function(err) {
-      expect(err).to.not.be.instanceof(Error);
+      expect(err).toNotBeAn(Error);
       done();
     });
   });

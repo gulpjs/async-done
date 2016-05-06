@@ -1,9 +1,6 @@
 'use strict';
 
-var lab = exports.lab = require('lab').script();
-var describe = lab.describe;
-var it = lab.it;
-var expect = require('code').expect;
+var expect = require('expect');
 
 var asyncDone = require('../');
 
@@ -15,8 +12,8 @@ describe('arguments', function() {
 
   it('passes all arguments to the completion callback', function(done) {
     asyncDone(twoArg, function(err, arg1, arg2) {
-      expect(arg1).to.equal(1);
-      expect(arg2).to.equal(2);
+      expect(arg1).toEqual(1);
+      expect(arg2).toEqual(2);
       done(err);
     });
   });
