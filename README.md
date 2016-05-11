@@ -58,6 +58,7 @@ Optionally takes a callback to call when async tasks are complete.
 * `Stream` or `EventEmitter` returned
   - Completion: [end-of-stream][end-of-stream] module
   - Error: [domains][domains]
+  - __Note:__ Only actual streams are supported, not faux-streams; Therefore, modules like [`event-stream`][event-stream] are not supported.
 * `Child Process` returned
   - Completion [end-of-stream][end-of-stream] module
   - Error: [domains][domains]
@@ -88,14 +89,15 @@ Errors can be caused by:
 
 MIT
 
-[end-of-stream]: https://www.npmjs.org/package/end-of-stream
+[end-of-stream]: https://www.npmjs.com/package/end-of-stream
 [domains]: http://nodejs.org/api/domain.html
+[event-stream]: https://github.com/dominictarr/event-stream
 [promise-onfulfilled]: http://promisesaplus.com/#point-26
 [promise-onrejected]: http://promisesaplus.com/#point-30
 [observable-subscribe]: https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/operators/subscribe.md
 
 [downloads-image]: http://img.shields.io/npm/dm/async-done.svg
-[npm-url]: https://npmjs.org/package/async-done
+[npm-url]: https://www.npmjs.com/package/async-done
 [npm-image]: http://img.shields.io/npm/v/async-done.svg
 
 [travis-url]: https://travis-ci.org/gulpjs/async-done
