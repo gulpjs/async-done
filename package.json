@@ -27,7 +27,7 @@
   },
   "dependencies": {
     "end-of-stream": "^1.1.0",
-    "next-tick": "^0.2.2",
+    "next-tick": "^1.0.0",
     "once": "^1.3.2",
     "stream-exhaust": "^1.0.1"
   },
