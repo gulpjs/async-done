@@ -8,7 +8,9 @@
 
 [![NPM version][npm-image]][npm-url] [![Downloads][downloads-image]][npm-url] [![Build Status][travis-image]][travis-url] [![AppVeyor Build Status][appveyor-image]][appveyor-url] [![Coveralls Status][coveralls-image]][coveralls-url] [![Gitter chat][gitter-image]][gitter-url]
 
-Force async using `nextTick` and normalize completion/errors for callbacks, promises, observables, child processes and streams.
+Allows libraries to handle various caller provided asynchronous functions uniformly. Maps promises, observables, child processes and streams, and callbacks to callback style.
+
+As async conventions evolve, it is useful to be able to deal with several different *styles* of async completion uniformly.   With this module you can handle completion using a Node.js style completion callback, regardless even if supplied with a object that's a promise, observable, child process and/or stream.
 
 ## Usage
 
