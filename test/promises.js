@@ -14,6 +14,10 @@ function failure() {
   return when.reject(new Error('Promise Error'));
 }
 
+function rejectNoError() {
+  return when.reject();
+}
+
 describe('promises', function() {
 
   it('should handle a resolved promise', function(done) {
@@ -25,6 +29,14 @@ describe('promises', function() {
 
   it('should handle a rejected promise', function(done) {
     asyncDone(failure, function(err) {
+      expect(err).toBeAn(Error);
+      done();
+    });
+  });
+
+  it('properly errors when rejected without an error', function(done) {
+    asyncDone(rejectNoError, function(err) {
+      expect(err).toExist();
       expect(err).toBeAn(Error);
       done();
     });

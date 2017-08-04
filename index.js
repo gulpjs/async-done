@@ -29,6 +29,9 @@ function asyncDone(fn, cb) {
   }
 
   function onError(error) {
+    if (!error) {
+      error = new Error('Promise rejected without Error');
+    }
     return done(error);
   }
 
