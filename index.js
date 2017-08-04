@@ -3,7 +3,7 @@
 var domain = require('domain');
 
 var eos = require('end-of-stream');
-var tick = require('next-tick');
+var tick = require('process-nextick-args');
 var once = require('once');
 var exhaust = require('stream-exhaust');
 
@@ -25,14 +25,14 @@ function asyncDone(fn, cb) {
   }
 
   function onSuccess(result) {
-    return done(null, result);
+    tick(done, null, result);
   }
 
   function onError(error) {
     if (!error) {
       error = new Error('Promise rejected without Error');
     }
-    return done(error);
+    tick(done, error);
   }
 
   function asyncRunner() {
@@ -43,7 +43,7 @@ function asyncDone(fn, cb) {
     }
 
     function onCompleted() {
-      return onSuccess(onNext.state);
+      onSuccess(onNext.state);
     }
 
     if (result && typeof result.on === 'function') {

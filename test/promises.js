@@ -1,5 +1,7 @@
 'use strict';
 
+var domain = require('domain');
+
 var expect = require('expect');
 
 var when = require('when');
@@ -39,6 +41,19 @@ describe('promises', function() {
       expect(err).toExist();
       expect(err).toBeAn(Error);
       done();
+    });
+  });
+
+  it('does not swallow thrown errors in callback', function(done) {
+    var d = domain.create();
+    d.once('error', function(err) {
+      expect(err).toExist();
+      done();
+    });
+    d.run(function() {
+      asyncDone(success, function() {
+        throw new Error('Boom');
+      });
     });
   });
 });
