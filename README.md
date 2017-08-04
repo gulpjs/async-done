@@ -10,7 +10,7 @@
 
 Allows libraries to handle various caller provided asynchronous functions uniformly. Maps promises, observables, child processes and streams, and callbacks to callback style.
 
-As async conventions evolve, it is useful to be able to deal with several different *styles* of async completion uniformly.   With this module you can handle completion using a Node.js style completion callback, regardless even if supplied with a object that's a promise, observable, child process and/or stream.
+As async conventions evolve, it is useful to be able to deal with several different *styles* of async completion uniformly. With this module you can handle completion using a node-style callback, regardless of a return value that's a promise, observable, child process or stream.
 
 ## Usage
 
@@ -75,7 +75,7 @@ __Warning:__ Sync tasks are __not supported__ and your function will never compl
 
 #### `callback(error, result)`
 
-If an error doesn't occur in the execution of the `fn` function, the `callback` method will receive the results as its second argument. Note: Observable and some streams don't received any results.
+If an error doesn't occur in the execution of the `fn` function, the `callback` method will receive the results as its second argument. Note: Some streams don't received any results.
 
 If an error occurred in the execution of the `fn` function, The `callback` method will receive an error as its first argument.
 
@@ -84,7 +84,7 @@ Errors can be caused by:
 * A thrown error
 * An error passed to a `done` callback
 * An `error` event emitted on a returned `Stream`, `EventEmitter` or `Child Process`
-* A rejection of a returned `Promise`
+* A rejection of a returned `Promise` - If the `Promise` is not rejected with a value, we generate a new `Error`
 * The `onError` handler being called on an `Observable`
 
 ## License
