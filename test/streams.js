@@ -5,6 +5,7 @@ var expect = require('expect');
 var fs = require('fs');
 var path = require('path');
 var through = require('through2');
+var pumpify = require('pumpify');
 
 var asyncDone = require('../');
 
@@ -29,6 +30,21 @@ function failure() {
   return read.pipe(new EndStream());
 }
 
+function withErr(chunk, _, cb) {
+  cb(new Error('Fail'));
+}
+
+function pumpifyError() {
+  var read = fs.createReadStream(exists);
+  var pipeline = pumpify(
+    through(),
+    through(withErr),
+    through()
+  );
+
+  return read.pipe(pipeline);
+}
+
 function unpiped() {
   return fs.createReadStream(exists);
 }
@@ -44,6 +60,14 @@ describe('streams', function() {
   it('should handle an errored stream', function(done) {
     asyncDone(failure, function(err) {
       expect(err).toBeAn(Error);
+      done();
+    });
+  });
+
+  it('should handle an errored pipeline', function(done) {
+    asyncDone(pumpifyError, function(err) {
+      expect(err).toBeAn(Error);
+      expect(err.message).toNotBe('premature close');
       done();
     });
   });
