@@ -48,6 +48,7 @@ describe('promises', function() {
     var d = domain.create();
     d.once('error', function(err) {
       expect(err).toExist();
+      expect(err.message).toContain('Boom');
       done();
     });
     d.run(function() {
