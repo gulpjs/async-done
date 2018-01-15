@@ -11,6 +11,22 @@ var eosConfig = {
   error: false,
 };
 
+function rethrowAsync(err) {
+  process.nextTick(rethrow);
+
+  function rethrow() {
+    throw err;
+  }
+}
+
+function tryCatch(fn, args) {
+  try {
+    return fn.apply(null, args);
+  } catch (err) {
+    rethrowAsync(err);
+  }
+}
+
 function asyncDone(fn, cb) {
   cb = once(cb);
 
@@ -21,18 +37,18 @@ function asyncDone(fn, cb) {
   function done() {
     d.removeListener('error', onError);
     d.exit();
-    return cb.apply(null, arguments);
+    return tryCatch(cb, arguments);
   }
 
   function onSuccess(result) {
-    tick(done, null, result);
+    done(null, result);
   }
 
   function onError(error) {
     if (!error) {
       error = new Error('Promise rejected without Error');
     }
-    tick(done, error);
+    done(error);
   }
 
   function asyncRunner() {
