@@ -1,6 +1,6 @@
 {
   "name": "async-done",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "description": "Allows libraries to handle various caller provided asynchronous functions uniformly. Maps promises, observables, child processes and streams, and callbacks to callback style.",
   "author": "Gulp Team <team@gulpjs.com> (http://gulpjs.com/)",
   "contributors": [
