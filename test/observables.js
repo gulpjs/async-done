@@ -11,6 +11,7 @@ function success() {
 }
 
 function successValue() {
+  // This corresponds to `Observable.return(42);` in RxJS 4
   return Observable.of(42);
 }
 

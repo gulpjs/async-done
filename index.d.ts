@@ -50,25 +50,25 @@
  */
 import { ChildProcess } from "child_process";
 import { EventEmitter } from "events";
-import { Readable as ReadableStream } from "stream";
+import { Stream } from "stream";
 
 declare namespace asyncDone {
 
   /**
    * Represents a callback function used to signal the completion of a
-   * task that does not return any completion value.
+   * task without any result value.
    */
   type VoidCallback = (err: Error | null) => void;
 
   /**
    * Represents a callback function used to signal the completion of a
-   * task that does return a single completion value.
+   * task with a single result value.
    */
   interface Callback<T> {
     (err: null, result: T): void;
 
-    // Set the type of `result` to `T` if you want to enforce stricter callback functions.
-    // (See comment above about risks of unsound type checking)
+    // Use `result?: T` or `result: undefined` to require the consumer to assert the existence of the result
+    // (even in case of success). See comment at the top of the file.
     (err: Error, result?: any): void;
   }
 
@@ -87,7 +87,7 @@ declare namespace asyncDone {
   export type AsyncTask<R = any> =
     ((done: VoidCallback) => void)
     | ((done: Callback<R>) => void)
-    | (() => ChildProcess | EventEmitter | Observable<R> | PromiseLike<R> | ReadableStream );
+    | (() => ChildProcess | EventEmitter | Observable<R> | PromiseLike<R> | Stream);
 }
 
 /**
