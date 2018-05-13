@@ -4,14 +4,15 @@ var expect = require('expect');
 
 var asyncDone = require('../');
 
-var Observable = require('rx').Observable;
+var Observable = require('rxjs').Observable;
 
 function success() {
   return Observable.empty();
 }
 
 function successValue() {
-  return Observable.return(42);
+  // This corresponds to `Observable.return(42);` in RxJS 4
+  return Observable.of(42);
 }
 
 function failure() {
