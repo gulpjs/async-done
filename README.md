@@ -68,8 +68,8 @@ Optionally takes a callback to call when async tasks are complete.
   - Completion: [onFulfilled][promise-onfulfilled] method called
   - Error: [onRejected][promise-onrejected] method called
 * `Observable` (e.g. from [RxJS v5][rxjs5-observable] or [RxJS v4][rxjs5-observable]) returned
-  - Completion: [complete][rxjs5-subscriber-complete] method called
-  - Error: [error][rxjs5-subscriber-error] method called
+  - Completion: [complete][rxjs5-observer-complete] method called
+  - Error: [error][rxjs5-observer-error] method called
 
 __Warning:__ Sync tasks are __not supported__ and your function will never complete if the one of the above strategies is not used to signal completion. However, thrown errors will be caught by the domain.
 
