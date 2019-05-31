@@ -82,7 +82,7 @@ function asyncDone(fn, cb) {
     }
   }
 
-  tick(asyncRunner);
+  tick.nextTick(asyncRunner);
 }
 
 module.exports = asyncDone;
