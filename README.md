@@ -6,7 +6,7 @@
 
 # async-done
 
-[![NPM version][npm-image]][npm-url] [![Downloads][downloads-image]][npm-url] [![Build Status][travis-image]][travis-url] [![AppVeyor Build Status][appveyor-image]][appveyor-url] [![Coveralls Status][coveralls-image]][coveralls-url] [![Gitter chat][gitter-image]][gitter-url]
+[![NPM version][npm-image]][npm-url] [![Downloads][downloads-image]][npm-url] [![Azure Pipelines Build Status][azure-pipelines-image]][azure-pipelines-url] [![Travis Build Status][travis-image]][travis-url] [![AppVeyor Build Status][appveyor-image]][appveyor-url] [![Coveralls Status][coveralls-image]][coveralls-url] [![Gitter chat][gitter-image]][gitter-url]
 
 Allows libraries to handle various caller provided asynchronous functions uniformly. Maps promises, observables, child processes and streams, and callbacks to callback style.
 
@@ -91,18 +91,21 @@ Errors can be caused by:
 
 MIT
 
-[downloads-image]: http://img.shields.io/npm/dm/async-done.svg
+[downloads-image]: https://img.shields.io/npm/dm/async-done.svg
 [npm-url]: https://www.npmjs.com/package/async-done
-[npm-image]: http://img.shields.io/npm/v/async-done.svg
+[npm-image]: https://img.shields.io/npm/v/async-done.svg
+
+[azure-pipelines-url]: https://dev.azure.com/gulpjs/gulp/_build/latest?definitionId=6&branchName=master
+[azure-pipelines-image]: https://dev.azure.com/gulpjs/gulp/_apis/build/status/async-done?branchName=master
 
 [travis-url]: https://travis-ci.org/gulpjs/async-done
-[travis-image]: http://img.shields.io/travis/gulpjs/async-done.svg?label=travis-ci
+[travis-image]: https://img.shields.io/travis/gulpjs/async-done.svg?label=travis-ci
 
 [appveyor-url]: https://ci.appveyor.com/project/gulpjs/async-done
 [appveyor-image]: https://img.shields.io/appveyor/ci/gulpjs/async-done.svg?label=appveyor
 
 [coveralls-url]: https://coveralls.io/r/gulpjs/async-done
-[coveralls-image]: http://img.shields.io/coveralls/gulpjs/async-done/master.svg
+[coveralls-image]: https://img.shields.io/coveralls/gulpjs/async-done/master.svg
 
 [gitter-url]: https://gitter.im/gulpjs/gulp
 [gitter-image]: https://badges.gitter.im/gulpjs/gulp.svg
