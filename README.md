@@ -91,16 +91,6 @@ Errors can be caused by:
 
 MIT
 
-[end-of-stream]: https://www.npmjs.com/package/end-of-stream
-[domains]: http://nodejs.org/api/domain.html
-[event-stream]: https://github.com/dominictarr/event-stream
-[promise-onfulfilled]: http://promisesaplus.com/#point-26
-[promise-onrejected]: http://promisesaplus.com/#point-30
-[rx4-observable]: https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observable.md
-[rxjs5-observable]: http://reactivex.io/rxjs/class/es6/Observable.js~Observable.html
-[rxjs5-observer-complete]: http://reactivex.io/rxjs/class/es6/MiscJSDoc.js~ObserverDoc.html#instance-method-complete
-[rxjs5-observer-error]: http://reactivex.io/rxjs/class/es6/MiscJSDoc.js~ObserverDoc.html#instance-method-error
-
 [downloads-image]: http://img.shields.io/npm/dm/async-done.svg
 [npm-url]: https://www.npmjs.com/package/async-done
 [npm-image]: http://img.shields.io/npm/v/async-done.svg
@@ -116,3 +106,13 @@ MIT
 
 [gitter-url]: https://gitter.im/gulpjs/gulp
 [gitter-image]: https://badges.gitter.im/gulpjs/gulp.svg
+
+[end-of-stream]: https://www.npmjs.com/package/end-of-stream
+[domains]: http://nodejs.org/api/domain.html
+[event-stream]: https://github.com/dominictarr/event-stream
+[promise-onfulfilled]: http://promisesaplus.com/#point-26
+[promise-onrejected]: http://promisesaplus.com/#point-30
+[rx4-observable]: https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observable.md
+[rxjs5-observable]: http://reactivex.io/rxjs/class/es6/Observable.js~Observable.html
+[rxjs5-observer-complete]: http://reactivex.io/rxjs/class/es6/MiscJSDoc.js~ObserverDoc.html#instance-method-complete
+[rxjs5-observer-error]: http://reactivex.io/rxjs/class/es6/MiscJSDoc.js~ObserverDoc.html#instance-method-error
