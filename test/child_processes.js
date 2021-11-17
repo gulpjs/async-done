@@ -25,28 +25,28 @@ function spawnFail() {
 describe('child processes', function() {
   it('should handle successful exec', function(done) {
     asyncDone(execSuccess, function(err) {
-      expect(err).toNotBeAn(Error);
+      expect(err).not.toBeInstanceOf(Error);
       done();
     });
   });
 
   it('should handle failing exec', function(done) {
     asyncDone(execFail, function(err) {
-      expect(err).toBeAn(Error);
+      expect(err).toBeInstanceOf(Error);
       done();
     });
   });
 
   it('should handle successful spawn', function(done) {
     asyncDone(spawnSuccess, function(err) {
-      expect(err).toNotBeAn(Error);
+      expect(err).not.toBeInstanceOf(Error);
       done();
     });
   });
 
   it('should handle failing spawn', function(done) {
     asyncDone(spawnFail, function(err) {
-      expect(err).toBeAn(Error);
+      expect(err).toBeInstanceOf(Error);
       done();
     });
   });

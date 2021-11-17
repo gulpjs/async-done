@@ -4,26 +4,26 @@ var expect = require('expect');
 
 var asyncDone = require('../');
 
-var Observable = require('rxjs').Observable;
+var rxjs = require('rxjs');
 
 function success() {
-  return Observable.empty();
+  return rxjs.empty();
 }
 
 function successValue() {
   // This corresponds to `Observable.return(42);` in RxJS 4
-  return Observable.of(42);
+  return rxjs.of(42);
 }
 
 function failure() {
-  return Observable.throw(new Error('Observable error'));
+  return rxjs.throw(new Error('Observable error'));
 }
 
 describe('observables', function() {
 
   it('should handle a finished observable', function(done) {
     asyncDone(success, function(err, result) {
-      expect(result).toEqual(undefined);
+      expect(result).toBeUndefined();
       done(err);
     });
   });
@@ -37,7 +37,7 @@ describe('observables', function() {
 
   it('should handle an errored observable', function(done) {
     asyncDone(failure, function(err) {
-      expect(err).toBeAn(Error);
+      expect(err).toBeInstanceOf(Error);
       done();
     });
   });

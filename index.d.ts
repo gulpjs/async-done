@@ -58,7 +58,7 @@ declare namespace asyncDone {
    * Represents a callback function used to signal the completion of a
    * task without any result value.
    */
-  type VoidCallback = (err: Error | null) => void;
+  type VoidCallback = (err: Error | null | void) => void;
 
   /**
    * Represents a callback function used to signal the completion of a

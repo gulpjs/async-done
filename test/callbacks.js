@@ -27,7 +27,7 @@ describe('callbacks', function() {
 
   it('should handle an errored callback', function(done) {
     asyncDone(failure, function(err) {
-      expect(err).toBeAn(Error);
+      expect(err).toBeInstanceOf(Error);
       done();
     });
   });
@@ -45,7 +45,7 @@ describe('callbacks', function() {
   it('should not handle error if something throws inside the callback', function(done) {
     var d = require('domain').create();
     d.on('error', function(err) {
-      expect(err).toBeAn(Error);
+      expect(err).toBeInstanceOf(Error);
       done();
     });
 

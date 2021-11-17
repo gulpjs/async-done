@@ -31,15 +31,15 @@ describe('promises', function() {
 
   it('should handle a rejected promise', function(done) {
     asyncDone(failure, function(err) {
-      expect(err).toBeAn(Error);
+      expect(err).toBeInstanceOf(Error);
       done();
     });
   });
 
   it('properly errors when rejected without an error', function(done) {
     asyncDone(rejectNoError, function(err) {
-      expect(err).toExist();
-      expect(err).toBeAn(Error);
+      expect(err).toBeTruthy();
+      expect(err).toBeInstanceOf(Error);
       done();
     });
   });
@@ -47,7 +47,7 @@ describe('promises', function() {
   it('does not swallow thrown errors in callback', function(done) {
     var d = domain.create();
     d.once('error', function(err) {
-      expect(err).toExist();
+      expect(err).toBeTruthy();
       expect(err.message).toContain('Boom');
       done();
     });
