@@ -1,5 +1,5 @@
-import asyncDone from "async-done";
-import { Readable, Stream } from "stream";
+import asyncDone from 'async-done';
+import { Readable, Stream } from 'stream';
 
 function streamSuccess(): Stream {
   return new Stream();
@@ -10,9 +10,9 @@ function streamFail(): Stream {
 }
 
 asyncDone(streamSuccess, function (err: Error | null): void {
-  console.log("Done");
+  console.log('Done');
 });
 
 asyncDone(streamFail, function (err: Error | null): void {
-  console.log("Done");
+  console.log('Done');
 });

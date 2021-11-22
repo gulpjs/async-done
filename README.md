@@ -10,7 +10,7 @@
 
 Allows libraries to handle various caller provided asynchronous functions uniformly. Maps promises, observables, child processes and streams, and callbacks to callback style.
 
-As async conventions evolve, it is useful to be able to deal with several different *styles* of async completion uniformly. With this module you can handle completion using a node-style callback, regardless of a return value that's a promise, observable, child process or stream.
+As async conventions evolve, it is useful to be able to deal with several different _styles_ of async completion uniformly. With this module you can handle completion using a node-style callback, regardless of a return value that's a promise, observable, child process or stream.
 
 ## Usage
 
@@ -19,13 +19,16 @@ As async conventions evolve, it is useful to be able to deal with several differ
 ```js
 var asyncDone = require('async-done');
 
-asyncDone(function(done){
-  // do async things
-  done(null, 2);
-}, function(error, result){
-  // `error` will be null on successful execution of the first function.
-  // `result` will be the result from the first function.
-});
+asyncDone(
+  function (done) {
+    // do async things
+    done(null, 2);
+  },
+  function (error, result) {
+    // `error` will be null on successful execution of the first function.
+    // `result` will be the result from the first function.
+  }
+);
 ```
 
 ### Failed completion
@@ -33,13 +36,16 @@ asyncDone(function(done){
 ```js
 var asyncDone = require('async-done');
 
-asyncDone(function(done){
-  // do async things
-  done(new Error('Some Error Occurred'));
-}, function(error, result){
-  // `error` will be an error from the first function.
-  // `result` will be undefined on failed execution of the first function.
-});
+asyncDone(
+  function (done) {
+    // do async things
+    done(new Error('Some Error Occurred'));
+  },
+  function (error, result) {
+    // `error` will be an error from the first function.
+    // `result` will be undefined on failed execution of the first function.
+  }
+);
 ```
 
 ## API
@@ -54,24 +60,24 @@ Optionally takes a callback to call when async tasks are complete.
 
 #### Completion and Error Resolution
 
-* `Callback` (`done`) called
+- `Callback` (`done`) called
   - Completion: called with null error
   - Error: called with non-null error
-* `Stream` or `EventEmitter` returned
+- `Stream` or `EventEmitter` returned
   - Completion: [end-of-stream][end-of-stream] module
   - Error: [domains][domains]
-  - __Note:__ Only actual streams are supported, not faux-streams; Therefore, modules like [`event-stream`][event-stream] are not supported.
-* `Child Process` returned
+  - **Note:** Only actual streams are supported, not faux-streams; Therefore, modules like [`event-stream`][event-stream] are not supported.
+- `Child Process` returned
   - Completion [end-of-stream][end-of-stream] module
   - Error: [domains][domains]
-* `Promise` returned
+- `Promise` returned
   - Completion: [onFulfilled][promise-onfulfilled] method called
   - Error: [onRejected][promise-onrejected] method called
-* `Observable` (e.g. from [RxJS v5][rxjs5-observable] or [RxJS v4][rxjs4-observable]) returned
+- `Observable` (e.g. from [RxJS v5][rxjs5-observable] or [RxJS v4][rxjs4-observable]) returned
   - Completion: [complete][rxjs5-observer-complete] method called
   - Error: [error][rxjs5-observer-error] method called
 
-__Warning:__ Sync tasks are __not supported__ and your function will never complete if the one of the above strategies is not used to signal completion. However, thrown errors will be caught by the domain.
+**Warning:** Sync tasks are **not supported** and your function will never complete if the one of the above strategies is not used to signal completion. However, thrown errors will be caught by the domain.
 
 #### `callback(error, result)`
 
@@ -81,11 +87,11 @@ If an error occurred in the execution of the `fn` function, The `callback` metho
 
 Errors can be caused by:
 
-* A thrown error
-* An error passed to a `done` callback
-* An `error` event emitted on a returned `Stream`, `EventEmitter` or `Child Process`
-* A rejection of a returned `Promise` - If the `Promise` is not rejected with a value, we generate a new `Error`
-* The `onError` handler being called on an `Observable`
+- A thrown error
+- An error passed to a `done` callback
+- An `error` event emitted on a returned `Stream`, `EventEmitter` or `Child Process`
+- A rejection of a returned `Promise` - If the `Promise` is not rejected with a value, we generate a new `Error`
+- The `onError` handler being called on an `Observable`
 
 ## License
 

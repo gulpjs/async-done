@@ -19,9 +19,7 @@
     "inlineSourceMap": false,
     "inlineSources": false,
     "isolatedModules": false,
-    "lib": [
-      "es2017"
-    ],
+    "lib": ["es2017"],
     "locale": "en-us",
     "module": "commonjs",
     "moduleResolution": "node",
@@ -40,9 +38,7 @@
     "noLib": false,
     "noResolve": false,
     "paths": {
-      "async-done": [
-        "index.d.ts"
-      ]
+      "async-done": ["index.d.ts"]
     },
     "preserveConstEnums": true,
     "removeComments": false,
@@ -56,8 +52,6 @@
     "target": "es2017",
     "traceResolution": false
   },
-  "include": [
-    "./**/*.ts"
-  ],
+  "include": ["./**/*.ts"],
   "exclude": []
 }

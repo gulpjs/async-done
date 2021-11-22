@@ -1,11 +1,11 @@
-import asyncDone, { Callback } from "async-done";
+import asyncDone, { Callback } from 'async-done';
 
 function success(cb: Callback<number>): void {
   cb(null, 2);
 }
 
 function failure(cb: Callback<number>): void {
-  cb(new Error("Callback Error"));
+  cb(new Error('Callback Error'));
 }
 
 function neverDone(): number {
@@ -14,7 +14,7 @@ function neverDone(): number {
 
 // `success` and stricter callback
 asyncDone(success, function (err: Error | null, result?: number): void {
-  console.log("Done");
+  console.log('Done');
 });
 
 // The following code fails to compile as expected:
@@ -24,17 +24,17 @@ asyncDone(success, function (err: Error | null, result?: number): void {
 
 // `success` and unsound callback
 asyncDone(success, function (err: Error | null, result: number): void {
-  console.log("Done");
+  console.log('Done');
 });
 
 // `failure` and stricter callback
 asyncDone(failure, function (err: Error | null, result?: number): void {
-  console.log("Done");
+  console.log('Done');
 });
 
 // `failure` and unsound callback
 asyncDone(failure, function (err: Error | null, result: number): void {
-  console.log("Done");
+  console.log('Done');
 });
 
 // I don't think TS is currently able to prevent the current code from compiling
