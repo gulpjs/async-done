@@ -4,20 +4,18 @@ var domain = require('domain');
 
 var expect = require('expect');
 
-var when = require('when');
-
 var asyncDone = require('../');
 
 function success() {
-  return when.resolve(2);
+  return Promise.resolve(2);
 }
 
 function failure() {
-  return when.reject(new Error('Promise Error'));
+  return Promise.reject(new Error('Promise Error'));
 }
 
 function rejectNoError() {
-  return when.reject();
+  return Promise.reject();
 }
 
 describe('promises', function() {
