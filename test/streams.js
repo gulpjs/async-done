@@ -42,6 +42,10 @@ function pumpifyError() {
     through()
   );
 
+  pipeline.on('error', function(err) {
+    throw err;
+  });
+
   return read.pipe(pipeline);
 }
 
@@ -52,22 +56,22 @@ function unpiped() {
 describe('streams', function() {
   it('should handle a successful stream', function(done) {
     asyncDone(success, function(err) {
-      expect(err).toNotBeAn(Error);
+      expect(err).not.toBeInstanceOf(Error);
       done();
     });
   });
 
   it('should handle an errored stream', function(done) {
     asyncDone(failure, function(err) {
-      expect(err).toBeAn(Error);
+      expect(err).toBeInstanceOf(Error);
       done();
     });
   });
 
   it('should handle an errored pipeline', function(done) {
     asyncDone(pumpifyError, function(err) {
-      expect(err).toBeAn(Error);
-      expect(err.message).toNotBe('premature close');
+      expect(err).toBeInstanceOf(Error);
+      expect(err.message).not.toEqual('premature close');
       done();
     });
   });
@@ -78,7 +82,7 @@ describe('streams', function() {
         cb(null, 3);
       });
     }, function(err, result) {
-      expect(err).toNotBeAn(Error);
+      expect(err).not.toBeInstanceOf(Error);
       expect(result).toEqual(3); // To know we called the callback
       done();
     });
@@ -86,7 +90,7 @@ describe('streams', function() {
 
   it('consumes an unpiped readable stream', function(done) {
     asyncDone(unpiped, function(err) {
-      expect(err).toNotBeAn(Error);
+      expect(err).not.toBeInstanceOf(Error);
       done();
     });
   });

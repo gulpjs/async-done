@@ -1,18 +1,18 @@
 import asyncDone from "async-done";
-import { Observable } from "rxjs/Observable";
+import { empty, of, throwError, Observable } from "rxjs";
 import 'rxjs/add/observable/empty';
 import 'rxjs/add/observable/of';
 
 function success(): Observable<undefined> {
-  return Observable.empty();
+  return empty();
 }
 
 function successValue(): Observable<number> {
-  return Observable.of(42);
+  return of(42);
 }
 
 function failure(): Observable<number> {
-  return Observable.throw(new Error("Observable error"));
+  return throwError(new Error("Observable error"));
 }
 
 // `success` callback
