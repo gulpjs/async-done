@@ -101,7 +101,9 @@ MIT
 
 [coveralls-url]: https://coveralls.io/r/gulpjs/async-done
 [coveralls-image]: https://img.shields.io/coveralls/gulpjs/async-done/master.svg?style=flat-square
+<!-- prettier-ignore-end -->
 
+<!-- prettier-ignore-start -->
 [end-of-stream]: https://www.npmjs.com/package/end-of-stream
 [domains]: http://nodejs.org/api/domain.html
 [event-stream]: https://github.com/dominictarr/event-stream
