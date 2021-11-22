@@ -30,7 +30,6 @@
   "dependencies": {
     "end-of-stream": "^1.4.4",
     "once": "^1.4.0",
-    "process-nextick-args": "^2.0.1",
     "stream-exhaust": "^1.0.2"
   },
   "devDependencies": {
