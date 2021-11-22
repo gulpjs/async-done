@@ -34,7 +34,6 @@
   },
   "devDependencies": {
     "@types/node": "^16.11.7",
-    "coveralls": "github:phated/node-coveralls#2.x",
     "eslint": "^7.32.0",
     "eslint-config-gulp": "^5.0.1",
     "eslint-plugin-node": "^11.1.0",
