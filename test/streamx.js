@@ -2,53 +2,42 @@
 
 var expect = require('expect');
 
-var fs = require('fs');
-var path = require('path');
-var through = require('through2');
-var pumpify = require('pumpify');
+var streamx = require('streamx');
 
 var asyncDone = require('../');
 
-var exists = path.join(__dirname, '../.gitignore');
-var notExists = path.join(__dirname, '../not_exists');
-
-var EndStream = through.ctor(
-  function (chunk, enc, cb) {
-    this.push(chunk);
-    cb();
-  },
-  function (cb) {
-    this.emit('end', 2);
-    cb();
-  }
-);
-
 function success() {
-  var read = fs.createReadStream(exists);
-  return read.pipe(new EndStream());
+  return streamx.Readable.from('Foo Bar Baz').pipe(new streamx.Writable());
 }
 
 function failure() {
-  var read = fs.createReadStream(notExists);
-  return read.pipe(new EndStream());
+  return streamx.Readable.from('Foo Bar Baz').pipe(
+    new streamx.Writable({
+      write: function (data, cb) {
+        cb(new Error('Fail'));
+      },
+    })
+  );
 }
 
-function withErr(chunk, _, cb) {
-  cb(new Error('Fail'));
-}
-
-function pumpifyError() {
-  var read = fs.createReadStream(exists);
-  var pipeline = pumpify(through(), through(withErr), through());
-
-  return read.pipe(pipeline);
+function pipelineError() {
+  return streamx.pipeline(
+    streamx.Readable.from('Foo Bar Baz'),
+    new streamx.Transform(),
+    new streamx.Transform({
+      transform: function (data, cb) {
+        cb(new Error('Fail'));
+      },
+    }),
+    new streamx.Writable()
+  );
 }
 
 function unpiped() {
-  return fs.createReadStream(exists);
+  return streamx.Readable.from('Foo Bar Baz');
 }
 
-describe('streams', function () {
+describe('streamx streams', function () {
   it('should handle a successful stream', function (done) {
     asyncDone(success, function (err) {
       expect(err).not.toBeInstanceOf(Error);
@@ -59,12 +48,13 @@ describe('streams', function () {
   it('should handle an errored stream', function (done) {
     asyncDone(failure, function (err) {
       expect(err).toBeInstanceOf(Error);
+      expect(err.message).not.toEqual('premature close');
       done();
     });
   });
 
   it('should handle an errored pipeline', function (done) {
-    asyncDone(pumpifyError, function (err) {
+    asyncDone(pipelineError, function (err) {
       expect(err).toBeInstanceOf(Error);
       expect(err.message).not.toEqual('premature close');
       done();
@@ -74,7 +64,7 @@ describe('streams', function () {
   it('handle a returned stream and cb by only calling callback once', function (done) {
     asyncDone(
       function (cb) {
-        return success().on('end', function () {
+        return success().on('finish', function () {
           cb(null, 3);
         });
       },

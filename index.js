@@ -6,9 +6,7 @@ var eos = require('end-of-stream');
 var once = require('once');
 var exhaust = require('stream-exhaust');
 
-var eosConfig = {
-  error: false,
-};
+var eosConfig = {};
 
 function rethrowAsync(err) {
   process.nextTick(rethrow);
