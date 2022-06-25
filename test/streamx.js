@@ -7,37 +7,37 @@ var streamx = require('streamx');
 var asyncDone = require('../');
 
 function success() {
-  return streamx.Readable.from("Foo Bar Baz")
-    .pipe(new streamx.Writable());
+  return streamx.Readable.from('Foo Bar Baz').pipe(new streamx.Writable());
 }
 
 function failure() {
-  return streamx.Readable.from("Foo Bar Baz")
-    .pipe(new streamx.Writable({
+  return streamx.Readable.from('Foo Bar Baz').pipe(
+    new streamx.Writable({
       write: function (data, cb) {
         cb(new Error('Fail'));
-      }
-    }));
+      },
+    })
+  );
 }
 
 function pipelineError() {
   return streamx.pipeline(
-    streamx.Readable.from("Foo Bar Baz"),
+    streamx.Readable.from('Foo Bar Baz'),
     new streamx.Transform(),
     new streamx.Transform({
       transform: function (data, cb) {
         cb(new Error('Fail'));
-      }
+      },
     }),
     new streamx.Writable()
   );
 }
 
 function unpiped() {
-  return streamx.Readable.from("Foo Bar Baz");
+  return streamx.Readable.from('Foo Bar Baz');
 }
 
-describe('streams', function () {
+describe('streamx streams', function () {
   it('should handle a successful stream', function (done) {
     asyncDone(success, function (err) {
       expect(err).not.toBeInstanceOf(Error);

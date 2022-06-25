@@ -41,10 +41,6 @@ function pumpifyError() {
   var read = fs.createReadStream(exists);
   var pipeline = pumpify(through(), through(withErr), through());
 
-  pipeline.on('error', function (err) {
-    throw err;
-  });
-
   return read.pipe(pipeline);
 }
 
