@@ -16,7 +16,9 @@ function successValue() {
 }
 
 function failure() {
-  return rxjs.throw(new Error('Observable error'));
+  return rxjs.throwError(function () {
+    return new Error('Observable error');
+  });
 }
 
 describe('observables', function () {
@@ -37,6 +39,7 @@ describe('observables', function () {
   it('should handle an errored observable', function (done) {
     asyncDone(failure, function (err) {
       expect(err).toBeInstanceOf(Error);
+      expect(err.message).toEqual('Observable error');
       done();
     });
   });
