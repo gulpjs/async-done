@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="http://gulpjs.com">
+  <a href="https://gulpjs.com">
     <img height="257" width="114" src="https://raw.githubusercontent.com/gulpjs/artwork/master/gulp-2x.png">
   </a>
 </p>
@@ -93,6 +93,16 @@ Errors can be caused by:
 - A rejection of a returned `Promise` - If the `Promise` is not rejected with a value, we generate a new `Error`
 - The `onError` handler being called on an `Observable`
 
+## Strict No LLM / No AI Policy
+
+No LLMs for issues.
+
+No LLMs for patches / pull requests.
+
+No LLMs for comments on the bug tracker, including translation.
+
+English is encouraged, but not required. You are welcome to post in your native language and rely on others to have their own translation tools of choice to interpret your words.
+
 ## License
 
 MIT
@@ -102,21 +112,9 @@ MIT
 [npm-url]: https://www.npmjs.com/package/async-done
 [npm-image]: https://img.shields.io/npm/v/async-done.svg?style=flat-square
 
-[ci-url]: https://github.com/gulpjs/async-done/actions?query=workflow:dev
-[ci-image]: https://img.shields.io/github/actions/workflow/status/gulpjs/async-done/dev.yml?branch=master&style=flat-square
+[ci-url]: https://github.com/gulpjs/$PROJECT_NAME/actions/workflows/dev.yml
+[ci-image]: https://img.shields.io/github/actions/workflow/status/gulpjs/$PROJECT_NAME/dev.yml?style=flat-square
 
-[coveralls-url]: https://coveralls.io/r/gulpjs/async-done
-[coveralls-image]: https://img.shields.io/coveralls/gulpjs/async-done/master.svg?style=flat-square
-<!-- prettier-ignore-end -->
-
-<!-- prettier-ignore-start -->
-[end-of-stream]: https://www.npmjs.com/package/end-of-stream
-[domains]: http://nodejs.org/api/domain.html
-[event-stream]: https://github.com/dominictarr/event-stream
-[promise-onfulfilled]: http://promisesaplus.com/#point-26
-[promise-onrejected]: http://promisesaplus.com/#point-30
-[rxjs4-observable]: https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observable.md
-[rxjs5-observable]: http://reactivex.io/rxjs/class/es6/Observable.js~Observable.html
-[rxjs5-observer-complete]: http://reactivex.io/rxjs/class/es6/MiscJSDoc.js~ObserverDoc.html#instance-method-complete
-[rxjs5-observer-error]: http://reactivex.io/rxjs/class/es6/MiscJSDoc.js~ObserverDoc.html#instance-method-error
+[coveralls-url]: https://coveralls.io/r/gulpjs/$PROJECT_NAME
+[coveralls-image]: https://img.shields.io/coveralls/gulpjs/$PROJECT_NAME/main.svg?style=flat-square
 <!-- prettier-ignore-end -->
