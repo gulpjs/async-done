@@ -1,16 +1,16 @@
-'use strict';
+"use strict";
 
-var expect = require('expect');
+var expect = require("expect");
 
-var fs = require('fs');
-var path = require('path');
-var through = require('through2');
-var pumpify = require('pumpify');
+var fs = require("fs");
+var path = require("path");
+var through = require("through2");
+var pumpify = require("pumpify");
 
-var asyncDone = require('../');
+var asyncDone = require("../");
 
-var exists = path.join(__dirname, '../.gitignore');
-var notExists = path.join(__dirname, '../not_exists');
+var exists = path.join(__dirname, "../.gitignore");
+var notExists = path.join(__dirname, "../not_exists");
 
 var EndStream = through.ctor(
   function (chunk, enc, cb) {
@@ -18,9 +18,9 @@ var EndStream = through.ctor(
     cb();
   },
   function (cb) {
-    this.emit('end', 2);
+    this.emit("end", 2);
     cb();
-  }
+  },
 );
 
 function success() {
@@ -34,7 +34,7 @@ function failure() {
 }
 
 function withErr(chunk, _, cb) {
-  cb(new Error('Fail'));
+  cb(new Error("Fail"));
 }
 
 function pumpifyError() {
@@ -48,33 +48,33 @@ function unpiped() {
   return fs.createReadStream(exists);
 }
 
-describe('streams', function () {
-  it('should handle a successful stream', function (done) {
+describe("streams", function () {
+  it("should handle a successful stream", function (done) {
     asyncDone(success, function (err) {
       expect(err).not.toBeInstanceOf(Error);
       done();
     });
   });
 
-  it('should handle an errored stream', function (done) {
+  it("should handle an errored stream", function (done) {
     asyncDone(failure, function (err) {
       expect(err).toBeInstanceOf(Error);
       done();
     });
   });
 
-  it('should handle an errored pipeline', function (done) {
+  it("should handle an errored pipeline", function (done) {
     asyncDone(pumpifyError, function (err) {
       expect(err).toBeInstanceOf(Error);
-      expect(err.message).not.toEqual('premature close');
+      expect(err.message).not.toEqual("premature close");
       done();
     });
   });
 
-  it('handle a returned stream and cb by only calling callback once', function (done) {
+  it("handle a returned stream and cb by only calling callback once", function (done) {
     asyncDone(
       function (cb) {
-        return success().on('end', function () {
+        return success().on("end", function () {
           cb(null, 3);
         });
       },
@@ -82,11 +82,11 @@ describe('streams', function () {
         expect(err).not.toBeInstanceOf(Error);
         expect(result).toEqual(3); // To know we called the callback
         done();
-      }
+      },
     );
   });
 
-  it('consumes an unpiped readable stream', function (done) {
+  it("consumes an unpiped readable stream", function (done) {
     asyncDone(unpiped, function (err) {
       expect(err).not.toBeInstanceOf(Error);
       done();

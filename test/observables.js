@@ -1,10 +1,10 @@
-'use strict';
+"use strict";
 
-var expect = require('expect');
+var expect = require("expect");
 
-var asyncDone = require('../');
+var asyncDone = require("../");
 
-var rxjs = require('rxjs');
+var rxjs = require("rxjs");
 
 function success() {
   return rxjs.empty();
@@ -17,29 +17,29 @@ function successValue() {
 
 function failure() {
   return rxjs.throwError(function () {
-    return new Error('Observable error');
+    return new Error("Observable error");
   });
 }
 
-describe('observables', function () {
-  it('should handle a finished observable', function (done) {
+describe("observables", function () {
+  it("should handle a finished observable", function (done) {
     asyncDone(success, function (err, result) {
       expect(result).toBeUndefined();
       done(err);
     });
   });
 
-  it('should handle a finished observable with value', function (done) {
+  it("should handle a finished observable with value", function (done) {
     asyncDone(successValue, function (err, result) {
       expect(result).toEqual(42);
       done(err);
     });
   });
 
-  it('should handle an errored observable', function (done) {
+  it("should handle an errored observable", function (done) {
     asyncDone(failure, function (err) {
       expect(err).toBeInstanceOf(Error);
-      expect(err.message).toEqual('Observable error');
+      expect(err.message).toEqual("Observable error");
       done();
     });
   });

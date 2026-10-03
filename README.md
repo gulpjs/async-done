@@ -17,7 +17,7 @@ As async conventions evolve, it is useful to be able to deal with several differ
 ### Successful completion
 
 ```js
-var asyncDone = require('async-done');
+var asyncDone = require("async-done");
 
 asyncDone(
   function (done) {
@@ -27,24 +27,24 @@ asyncDone(
   function (error, result) {
     // `error` will be null on successful execution of the first function.
     // `result` will be the result from the first function.
-  }
+  },
 );
 ```
 
 ### Failed completion
 
 ```js
-var asyncDone = require('async-done');
+var asyncDone = require("async-done");
 
 asyncDone(
   function (done) {
     // do async things
-    done(new Error('Some Error Occurred'));
+    done(new Error("Some Error Occurred"));
   },
   function (error, result) {
     // `error` will be an error from the first function.
     // `result` will be undefined on failed execution of the first function.
-  }
+  },
 );
 ```
 

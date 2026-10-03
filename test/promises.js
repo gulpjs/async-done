@@ -1,39 +1,39 @@
-'use strict';
+"use strict";
 
-var domain = require('domain');
+var domain = require("domain");
 
-var expect = require('expect');
+var expect = require("expect");
 
-var asyncDone = require('../');
+var asyncDone = require("../");
 
 function success() {
   return Promise.resolve(2);
 }
 
 function failure() {
-  return Promise.reject(new Error('Promise Error'));
+  return Promise.reject(new Error("Promise Error"));
 }
 
 function rejectNoError() {
   return Promise.reject();
 }
 
-describe('promises', function () {
-  it('should handle a resolved promise', function (done) {
+describe("promises", function () {
+  it("should handle a resolved promise", function (done) {
     asyncDone(success, function (err, result) {
       expect(result).toEqual(2);
       done(err);
     });
   });
 
-  it('should handle a rejected promise', function (done) {
+  it("should handle a rejected promise", function (done) {
     asyncDone(failure, function (err) {
       expect(err).toBeInstanceOf(Error);
       done();
     });
   });
 
-  it('properly errors when rejected without an error', function (done) {
+  it("properly errors when rejected without an error", function (done) {
     asyncDone(rejectNoError, function (err) {
       expect(err).toBeTruthy();
       expect(err).toBeInstanceOf(Error);
@@ -41,16 +41,16 @@ describe('promises', function () {
     });
   });
 
-  it('does not swallow thrown errors in callback', function (done) {
+  it("does not swallow thrown errors in callback", function (done) {
     var d = domain.create();
-    d.once('error', function (err) {
+    d.once("error", function (err) {
       expect(err).toBeTruthy();
-      expect(err.message).toContain('Boom');
+      expect(err.message).toContain("Boom");
       done();
     });
     d.run(function () {
       asyncDone(success, function () {
-        throw new Error('Boom');
+        throw new Error("Boom");
       });
     });
   });

@@ -48,9 +48,9 @@
  *   }
  *   ```
  */
-import { ChildProcess } from 'child_process';
-import { EventEmitter } from 'events';
-import { Stream } from 'stream';
+import { ChildProcess } from "child_process";
+import { EventEmitter } from "events";
+import { Stream } from "stream";
 
 declare namespace asyncDone {
   /**
@@ -80,7 +80,7 @@ declare namespace asyncDone {
     subscribe(
       next?: (value: T) => void,
       error?: (error: any) => void,
-      complete?: () => void
+      complete?: () => void,
     ): any;
   }
 
@@ -91,11 +91,7 @@ declare namespace asyncDone {
     | ((done: VoidCallback) => void)
     | ((done: Callback<R>) => void)
     | (() =>
-        | ChildProcess
-        | EventEmitter
-        | Observable<R>
-        | PromiseLike<R>
-        | Stream);
+        ChildProcess | EventEmitter | Observable<R> | PromiseLike<R> | Stream);
 }
 
 /**
@@ -106,7 +102,7 @@ declare namespace asyncDone {
  */
 declare function asyncDone<R = any>(
   fn: asyncDone.AsyncTask<R>,
-  callback: asyncDone.Callback<R>
+  callback: asyncDone.Callback<R>,
 ): void;
 
 export = asyncDone;
