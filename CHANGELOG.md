@@ -1,5 +1,16 @@
 # Changelog
 
+## [3.0.0](https://github.com/gulpjs/async-done/compare/v2.0.0...v3.0.0) (2026-10-09)
+
+
+### ⚠ BREAKING CHANGES
+
+* Normalize repository, dropping Node <22.15.0 ([#62](https://github.com/gulpjs/async-done/issues/62))
+
+### Miscellaneous Chores
+
+* Normalize repository, dropping Node &lt;22.15.0 ([#62](https://github.com/gulpjs/async-done/issues/62)) ([d2d6848](https://github.com/gulpjs/async-done/commit/d2d6848755e4fe25b3799c2529cb7054165fcbf4))
+
 ## [2.0.0](https://www.github.com/gulpjs/async-done/compare/v1.3.2...v2.0.0) (2022-06-25)
 
 
