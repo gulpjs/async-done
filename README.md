@@ -117,7 +117,9 @@ MIT
 [rxjs5-observable]: http://reactivex.io/rxjs/class/es6/Observable.js~Observable.html
 [rxjs5-observer-complete]: http://reactivex.io/rxjs/class/es6/MiscJSDoc.js~ObserverDoc.html#instance-method-complete
 [rxjs5-observer-error]: http://reactivex.io/rxjs/class/es6/MiscJSDoc.js~ObserverDoc.html#instance-method-error
+<!-- prettier-ignore-end -->
 
+<!-- prettier-ignore-start -->
 [downloads-image]: https://img.shields.io/npm/dm/async-done.svg?style=flat-square
 [npm-url]: https://www.npmjs.com/package/async-done
 [npm-image]: https://img.shields.io/npm/v/async-done.svg?style=flat-square
