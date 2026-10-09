@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="http://gulpjs.com">
+  <a href="https://gulpjs.com">
     <img height="257" width="114" src="https://raw.githubusercontent.com/gulpjs/artwork/master/gulp-2x.png">
   </a>
 </p>
@@ -17,7 +17,7 @@ As async conventions evolve, it is useful to be able to deal with several differ
 ### Successful completion
 
 ```js
-var asyncDone = require('async-done');
+var asyncDone = require("async-done");
 
 asyncDone(
   function (done) {
@@ -27,24 +27,24 @@ asyncDone(
   function (error, result) {
     // `error` will be null on successful execution of the first function.
     // `result` will be the result from the first function.
-  }
+  },
 );
 ```
 
 ### Failed completion
 
 ```js
-var asyncDone = require('async-done');
+var asyncDone = require("async-done");
 
 asyncDone(
   function (done) {
     // do async things
-    done(new Error('Some Error Occurred'));
+    done(new Error("Some Error Occurred"));
   },
   function (error, result) {
     // `error` will be an error from the first function.
     // `result` will be undefined on failed execution of the first function.
-  }
+  },
 );
 ```
 
@@ -93,21 +93,19 @@ Errors can be caused by:
 - A rejection of a returned `Promise` - If the `Promise` is not rejected with a value, we generate a new `Error`
 - The `onError` handler being called on an `Observable`
 
+## Strict No LLM / No AI Policy
+
+No LLMs for issues.
+
+No LLMs for patches / pull requests.
+
+No LLMs for comments on the bug tracker, including translation.
+
+English is encouraged, but not required. You are welcome to post in your native language and rely on others to have their own translation tools of choice to interpret your words.
+
 ## License
 
 MIT
-
-<!-- prettier-ignore-start -->
-[downloads-image]: https://img.shields.io/npm/dm/async-done.svg?style=flat-square
-[npm-url]: https://www.npmjs.com/package/async-done
-[npm-image]: https://img.shields.io/npm/v/async-done.svg?style=flat-square
-
-[ci-url]: https://github.com/gulpjs/async-done/actions?query=workflow:dev
-[ci-image]: https://img.shields.io/github/actions/workflow/status/gulpjs/async-done/dev.yml?branch=master&style=flat-square
-
-[coveralls-url]: https://coveralls.io/r/gulpjs/async-done
-[coveralls-image]: https://img.shields.io/coveralls/gulpjs/async-done/master.svg?style=flat-square
-<!-- prettier-ignore-end -->
 
 <!-- prettier-ignore-start -->
 [end-of-stream]: https://www.npmjs.com/package/end-of-stream
@@ -119,4 +117,16 @@ MIT
 [rxjs5-observable]: http://reactivex.io/rxjs/class/es6/Observable.js~Observable.html
 [rxjs5-observer-complete]: http://reactivex.io/rxjs/class/es6/MiscJSDoc.js~ObserverDoc.html#instance-method-complete
 [rxjs5-observer-error]: http://reactivex.io/rxjs/class/es6/MiscJSDoc.js~ObserverDoc.html#instance-method-error
+<!-- prettier-ignore-end -->
+
+<!-- prettier-ignore-start -->
+[downloads-image]: https://img.shields.io/npm/dm/async-done.svg?style=flat-square
+[npm-url]: https://www.npmjs.com/package/async-done
+[npm-image]: https://img.shields.io/npm/v/async-done.svg?style=flat-square
+
+[ci-url]: https://github.com/gulpjs/async-done/actions/workflows/dev.yml
+[ci-image]: https://img.shields.io/github/actions/workflow/status/gulpjs/async-done/dev.yml?style=flat-square
+
+[coveralls-url]: https://coveralls.io/r/gulpjs/async-done
+[coveralls-image]: https://img.shields.io/coveralls/gulpjs/async-done/main.svg?style=flat-square
 <!-- prettier-ignore-end -->
