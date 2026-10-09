@@ -124,9 +124,9 @@ MIT
 [npm-url]: https://www.npmjs.com/package/async-done
 [npm-image]: https://img.shields.io/npm/v/async-done.svg?style=flat-square
 
-[ci-url]: https://github.com/gulpjs/$PROJECT_NAME/actions/workflows/dev.yml
-[ci-image]: https://img.shields.io/github/actions/workflow/status/gulpjs/$PROJECT_NAME/dev.yml?style=flat-square
+[ci-url]: https://github.com/gulpjs/async-done/actions/workflows/dev.yml
+[ci-image]: https://img.shields.io/github/actions/workflow/status/gulpjs/async-done/dev.yml?style=flat-square
 
-[coveralls-url]: https://coveralls.io/r/gulpjs/$PROJECT_NAME
-[coveralls-image]: https://img.shields.io/coveralls/gulpjs/$PROJECT_NAME/main.svg?style=flat-square
+[coveralls-url]: https://coveralls.io/r/gulpjs/async-done
+[coveralls-image]: https://img.shields.io/coveralls/gulpjs/async-done/main.svg?style=flat-square
 <!-- prettier-ignore-end -->
