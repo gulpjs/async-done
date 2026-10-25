@@ -1,6 +1,7 @@
 "use strict";
 
-var expect = require("expect");
+var assert = require("node:assert");
+var { describe, it } = require("node:test");
 
 var cp = require("child_process");
 var asyncDone = require("../");
@@ -22,30 +23,30 @@ function spawnFail() {
 }
 
 describe("child processes", function () {
-  it("should handle successful exec", function (done) {
+  it("should handle successful exec", function (t, done) {
     asyncDone(execSuccess, function (err) {
-      expect(err).not.toBeInstanceOf(Error);
+      assert.strictEqual(err instanceof Error, false);
       done();
     });
   });
 
-  it("should handle failing exec", function (done) {
+  it("should handle failing exec", function (t, done) {
     asyncDone(execFail, function (err) {
-      expect(err).toBeInstanceOf(Error);
+      assert.ok(err instanceof Error);
       done();
     });
   });
 
-  it("should handle successful spawn", function (done) {
+  it("should handle successful spawn", function (t, done) {
     asyncDone(spawnSuccess, function (err) {
-      expect(err).not.toBeInstanceOf(Error);
+      assert.strictEqual(err instanceof Error, false);
       done();
     });
   });
 
-  it("should handle failing spawn", function (done) {
+  it("should handle failing spawn", function (t, done) {
     asyncDone(spawnFail, function (err) {
-      expect(err).toBeInstanceOf(Error);
+      assert.ok(err instanceof Error);
       done();
     });
   });
