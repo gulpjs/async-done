@@ -1,10 +1,10 @@
 "use strict";
 
+var fs = require("node:fs");
+var path = require("node:path");
 var assert = require("node:assert");
 var { describe, it } = require("node:test");
 
-var fs = require("node:fs");
-var path = require("node:path");
 var through = require("through2");
 var pumpify = require("pumpify");
 
