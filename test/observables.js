@@ -1,6 +1,7 @@
 "use strict";
 
-var expect = require("expect");
+var assert = require("node:assert");
+var { describe, it } = require("node:test");
 
 var asyncDone = require("../");
 
@@ -22,24 +23,24 @@ function failure() {
 }
 
 describe("observables", function () {
-  it("should handle a finished observable", function (done) {
+  it("should handle a finished observable", function (t, done) {
     asyncDone(success, function (err, result) {
-      expect(result).toBeUndefined();
+      assert.strictEqual(result, undefined);
       done(err);
     });
   });
 
-  it("should handle a finished observable with value", function (done) {
+  it("should handle a finished observable with value", function (t, done) {
     asyncDone(successValue, function (err, result) {
-      expect(result).toEqual(42);
+      assert.strictEqual(result, 42);
       done(err);
     });
   });
 
-  it("should handle an errored observable", function (done) {
+  it("should handle an errored observable", function (t, done) {
     asyncDone(failure, function (err) {
-      expect(err).toBeInstanceOf(Error);
-      expect(err.message).toEqual("Observable error");
+      assert.ok(err instanceof Error);
+      assert.strictEqual(err.message, "Observable error");
       done();
     });
   });

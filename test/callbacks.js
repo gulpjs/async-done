@@ -1,6 +1,7 @@
 "use strict";
 
-var expect = require("expect");
+var assert = require("node:assert");
+var { describe, it } = require("node:test");
 
 var asyncDone = require("../");
 
@@ -17,21 +18,21 @@ function neverDone() {
 }
 
 describe("callbacks", function () {
-  it("should handle a successful callback", function (done) {
+  it("should handle a successful callback", function (t, done) {
     asyncDone(success, function (err, result) {
-      expect(result).toEqual(2);
+      assert.strictEqual(result, 2);
       done(err);
     });
   });
 
-  it("should handle an errored callback", function (done) {
+  it("should handle an errored callback", function (t, done) {
     asyncDone(failure, function (err) {
-      expect(err).toBeInstanceOf(Error);
+      assert.ok(err instanceof Error);
       done();
     });
   });
 
-  it("a function that takes an argument but never calls callback", function (done) {
+  it("a function that takes an argument but never calls callback", function (t, done) {
     asyncDone(neverDone, function () {
       done(new Error("Callback called"));
     });
@@ -41,10 +42,10 @@ describe("callbacks", function () {
     }, 1000);
   });
 
-  it("should not handle error if something throws inside the callback", function (done) {
+  it("should not handle error if something throws inside the callback", function (t, done) {
     var d = require("domain").create();
     d.on("error", function (err) {
-      expect(err).toBeInstanceOf(Error);
+      assert.ok(err instanceof Error);
       done();
     });
 

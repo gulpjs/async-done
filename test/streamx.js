@@ -1,6 +1,7 @@
 "use strict";
 
-var expect = require("expect");
+var assert = require("node:assert");
+var { describe, it } = require("node:test");
 
 var streamx = require("streamx");
 
@@ -38,30 +39,30 @@ function unpiped() {
 }
 
 describe("streamx streams", function () {
-  it("should handle a successful stream", function (done) {
+  it("should handle a successful stream", function (t, done) {
     asyncDone(success, function (err) {
-      expect(err).not.toBeInstanceOf(Error);
+      assert.strictEqual(err instanceof Error, false);
       done();
     });
   });
 
-  it("should handle an errored stream", function (done) {
+  it("should handle an errored stream", function (t, done) {
     asyncDone(failure, function (err) {
-      expect(err).toBeInstanceOf(Error);
-      expect(err.message).not.toEqual("premature close");
+      assert.ok(err instanceof Error);
+      assert.notStrictEqual(err.message, "premature close");
       done();
     });
   });
 
-  it("should handle an errored pipeline", function (done) {
+  it("should handle an errored pipeline", function (t, done) {
     asyncDone(pipelineError, function (err) {
-      expect(err).toBeInstanceOf(Error);
-      expect(err.message).not.toEqual("premature close");
+      assert.ok(err instanceof Error);
+      assert.notStrictEqual(err.message, "premature close");
       done();
     });
   });
 
-  it("handle a returned stream and cb by only calling callback once", function (done) {
+  it("handle a returned stream and cb by only calling callback once", function (t, done) {
     asyncDone(
       function (cb) {
         return success().on("finish", function () {
@@ -69,16 +70,16 @@ describe("streamx streams", function () {
         });
       },
       function (err, result) {
-        expect(err).not.toBeInstanceOf(Error);
-        expect(result).toEqual(3); // To know we called the callback
+        assert.strictEqual(err instanceof Error, false);
+        assert.strictEqual(result, 3); // To know we called the callback
         done();
       },
     );
   });
 
-  it("consumes an unpiped readable stream", function (done) {
+  it("consumes an unpiped readable stream", function (t, done) {
     asyncDone(unpiped, function (err) {
-      expect(err).not.toBeInstanceOf(Error);
+      assert.strictEqual(err instanceof Error, false);
       done();
     });
   });
